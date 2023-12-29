@@ -30,13 +30,15 @@ jobs:
     needs: config
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
       - name: Restore node_modules cache
         uses: actions/cache@v3
         with:
           path: |
             node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          
       - run:  npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
