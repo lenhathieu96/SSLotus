@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "types": ["vite/client"],
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    /* Bundler mode */
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "moduleResolution": "Node",
+    "baseUrl": "./src",
+    "paths": {
+      "@assets/*": ["assets/*"],
+      "@components/*": ["components/*"],
+      "@pages/*": ["pages/*"],
+      "@navigation/*": ["navigation/*"],
+      "@utils/*": ["utils/*"],
+      "@routes": ["routes"],
+      "@remote/*": ["data/remote/*"],
+      "@services": ["services"],
+      "@models": ["services/index.model"],
+      "@app/*": ["*"]
+    }
+  },
+  "include": ["src/**/*", "tailwind-colors.d.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
