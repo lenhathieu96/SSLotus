@@ -68,7 +68,6 @@
       "requireBranch": "master"
     },
     "hooks": {
-      // "before:init": "git add . && git commit -m 'clean working dir'",
       "after:bump": [
         "npm run build"
       ]
