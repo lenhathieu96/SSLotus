@@ -1,7 +1,7 @@
 {
   "name": "ss_lotus",
   "private": true,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -64,7 +64,6 @@
     "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^4.2.2"
   },
-
   "release-it": {
     "git": {
       "commitMessage": "chore: release ${version}",
@@ -88,7 +87,6 @@
       }
     }
   },
-
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
