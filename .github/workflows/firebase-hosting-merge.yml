@@ -17,16 +17,16 @@ jobs:
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-      - run: npm install
-      - run: npm release
+      - run: npm run install
+      - run: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_OTUS_63127 }}'
-          channelId: live
-          projectId: otus-63127
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: FirebaseExtended/action-hosting-deploy@v0
+  #       with:
+  #         repoToken: '${{ secrets.GITHUB_TOKEN }}'
+  #         firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_OTUS_63127 }}'
+  #         channelId: live
+  #         projectId: otus-63127
