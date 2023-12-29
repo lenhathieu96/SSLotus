@@ -4,10 +4,12 @@ name: Deploy to Firebase Hosting on merge
     branches:
       - master
 jobs:
-  config:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set Node.js 16.x
         uses: actions/setup-node@v4
@@ -28,18 +30,14 @@ jobs:
           channelId: live
           projectId: otus-63127
 
-  # build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         fetch-depth: 0
-  #     - name: git config
-  #       run: |
-  #         git config user.name "${GITHUB_ACTOR}"
-  #         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-  #     - run: npm run release
-  #       env:
-  #         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Git Config
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+      
+      - name: Create Git Release
+        run: npm run release
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           
 
