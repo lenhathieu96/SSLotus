@@ -68,6 +68,7 @@
       "requireBranch": "master"
     },
     "hooks": {
+      "before:init": "git add .",
       "after:bump": [
         "npm run build"
       ]
