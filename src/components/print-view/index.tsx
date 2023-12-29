@@ -62,7 +62,7 @@ const PrintPreView = forwardRef(
                   {person.christineName}
                 </td>
                 <td className={`${baseCellStyles} w-1/4 text-center `}>
-                  {new Date().getFullYear() - parseInt(person.yob, 10) + 1}
+                  {person.yob ? new Date().getFullYear() - person.yob : null}
                 </td>
               </tr>
             ))}

@@ -16,7 +16,11 @@ interface Props {
 
 const FamiliesHeaderComp = ({ onAddNewFamily, onSearchFamilies }: Props) => {
   const onPressAddFamily = () => {
-    // onAddNewFamily({})
+    onAddNewFamily({
+      id: 1231,
+      address: "",
+      member: [],
+    });
   };
 
   return (

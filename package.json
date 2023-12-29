@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "release": "release-it"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
@@ -31,6 +32,7 @@
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
+    "@release-it/conventional-changelog": "^8.0.1",
     "@types/node": "^20.10.5",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
@@ -51,6 +53,7 @@
     "postcss": "^8.4.32",
     "prettier": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.9",
+    "release-it": "^17.0.1",
     "sass": "^1.69.5",
     "tailwindcss": "^3.3.6",
     "typescript": "^5.2.2",
@@ -58,5 +61,29 @@
     "vite-plugin-react-svg": "^0.2.0",
     "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^4.2.2"
+  },
+
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}",
+      "requireBranch": "master"
+    },
+    "hooks": {
+      "after:bump": [
+        "npm run build"
+      ]
+    },
+    "github": {
+      "release": true
+    },
+    "npm": {
+      "publish": false
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
   }
 }
