@@ -4,8 +4,14 @@ export type Person = {
   yob?: number;
 };
 
+export interface Appointment {
+  date: Date;
+  type: "CA";
+}
+
 export type Family = {
   id: number;
   address: string;
-  member: Person[];
+  members: Person[];
+  appointment?: Appointment;
 };

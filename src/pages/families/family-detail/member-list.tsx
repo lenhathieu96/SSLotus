@@ -7,8 +7,8 @@ import { Person } from "@models";
 
 interface Props {
   members: Person[];
-  onEditMemberProfile: (currentProfile: Person) => void;
-  onRemoveMember: (currentProfile: Person) => void;
+  onEditMemberProfile: (currentProfile: Person, index: number) => void;
+  onRemoveMember: (index: number) => void;
 }
 
 const MemberListComp = ({
@@ -18,17 +18,13 @@ const MemberListComp = ({
 }: Props) => {
   return (
     <div className="flex-1 overflow-y-scroll">
-      {members.map((member) => (
+      {members.map((member, index) => (
         <div
           key={`key-${member.fullName}`}
           className="mb-XS flex flex-row justify-between border-b-2 py-XXXS"
         >
           <div className="flex flex-col gap-XS ">
             <p className="text-body1 font-semibold">{member.fullName}</p>
-            <div className="ml-XS flex flex-row items-baseline gap-XXXS">
-              <p className="font-regular text-body1">Năm sinh: </p>
-              <p className="text-body1 font-semibold">{member.yob}</p>
-            </div>
             {member.christineName && (
               <div className="ml-XS flex flex-row items-baseline gap-XXXS">
                 <p className="font-regular text-body1">Pháp danh: </p>
@@ -44,14 +40,14 @@ const MemberListComp = ({
               icon="PencilIcon"
               iconColor="blue-100"
               iconSize="LS"
-              onClick={() => onEditMemberProfile(member)}
+              onClick={() => onEditMemberProfile(member, index)}
             />
             <Button.Icon
               className="bg-transparent p-ZERO active:bg-transparent"
               icon="TrashIcon"
               iconColor="red-200"
               iconSize="LS"
-              onClick={() => onRemoveMember(member)}
+              onClick={() => onRemoveMember(index)}
             />
           </div>
         </div>

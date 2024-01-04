@@ -5,32 +5,28 @@ import { debounce } from "lodash";
 
 import Button from "@components/button";
 
-import { Family } from "@models";
-
 import SearchInput from "./search-input";
 
 interface Props {
-  onAddNewFamily: (family: Family) => void;
+  enableAddNewFamily: boolean;
+  onAddNewFamily: () => void;
   onSearchFamilies: (query: string) => void;
 }
 
-const FamiliesHeaderComp = ({ onAddNewFamily, onSearchFamilies }: Props) => {
-  const onPressAddFamily = () => {
-    onAddNewFamily({
-      id: 1231,
-      address: "",
-      member: [],
-    });
-  };
-
+const FamiliesHeaderComp = ({
+  enableAddNewFamily,
+  onAddNewFamily,
+  onSearchFamilies,
+}: Props) => {
   return (
     <div className="flex w-full flex-row items-center justify-between rounded-2xl bg-white-100 p-XS">
       <SearchInput onQueryTxtChange={debounce(onSearchFamilies, 1000)} />
       <div>
         <Button
+          disabled={!enableAddNewFamily}
           label="Thêm hộ mới"
-          leading={<PlusIcon className="h-L w-L stroke-2" />}
-          onClick={onPressAddFamily}
+          leading={<PlusIcon className={`h-L w-L stroke-2 text-white-100`} />}
+          onClick={onAddNewFamily}
         />
       </div>
     </div>

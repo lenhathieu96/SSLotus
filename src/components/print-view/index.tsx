@@ -48,7 +48,7 @@ const PrintPreView = forwardRef(
             </tr>
           </thead>
           <tbody className="border-2 border-black-300">
-            {data.member.map((person, index) => (
+            {data.members.map((person, index) => (
               <tr
                 key={`table-key-${person.fullName}`}
                 style={{

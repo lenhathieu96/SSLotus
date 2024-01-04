@@ -26,7 +26,7 @@ export default function FormInput({
         <input
           className={`rounded-2xl bg-gray-100 p-XS font-medium text-body1 outline-none ${borderStyle}`}
           value={value}
-          onChange={(e) => onChange(e.target.value.toUpperCase())}
+          onChange={(e) => onChange(e.target.value)}
         />
       </div>
 

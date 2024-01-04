@@ -1,3 +1,7 @@
+import tailwindConfig from "../../tailwind.config";
+
+export const AppColor = tailwindConfig.theme.colors;
+
 export const VIETNAMESE_REG =
   /^[aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz\s]+$/i;
 

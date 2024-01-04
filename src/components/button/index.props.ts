@@ -14,7 +14,7 @@ export interface IBaseButtonProps {
   /**
    * @default primary color
    */
-  color?: AppColor;
+  color?: string;
   trailing?: ReactNode;
   leading?: ReactNode;
 }

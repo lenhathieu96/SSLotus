@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
+import Utils from "@utils/utils";
 
+import AddFamilyContent from "@components/modal/add-family-content";
 import RootView from "@components/root-view";
 
 import { Family } from "@models";
@@ -18,13 +20,30 @@ export default function FamiliesPage() {
     setFamilies(data);
   }, []);
 
-  const onAddNewFamily = () => {
-    console.log("add new family");
+  const onUpdateFamilyDetail = (family: Family) => {
+    setCurrentFamily(family);
+    FamilyService.updateFamilyProfile(family);
+  };
+
+  const onAddFamily = (address: string) => {
+    const tempFamily: Family = {
+      id: -1,
+      address,
+      members: [],
+    };
+    setCurrentFamily(tempFamily);
+    setFamilies([tempFamily]);
+  };
+  const onPressAddNewFamily = () => {
+    Utils.showCustomModal(<AddFamilyContent onAddFamily={onAddFamily} />);
   };
 
   const onCloseFamilyDetail = useCallback(() => {
+    if (currentFamily?.id === -1) {
+      setFamilies([]);
+    }
     setCurrentFamily(undefined);
-  }, []);
+  }, [currentFamily]);
 
   const onSeeFamilyDetail = useCallback(
     (id: number) => {
@@ -42,7 +61,8 @@ export default function FamiliesPage() {
   return (
     <RootView className="flex h-full flex-col items-start gap-XS py-XXS">
       <FamiliesHeader
-        onAddNewFamily={onAddNewFamily}
+        enableAddNewFamily={currentFamily?.id !== -1}
+        onAddNewFamily={onPressAddNewFamily}
         onSearchFamilies={onSearchFamilies}
       />
 
@@ -65,7 +85,11 @@ export default function FamiliesPage() {
 
         {currentFamily && (
           <div className="grow rounded-2xl  bg-white-100 p-XS transition-all duration-500">
-            <FamilyDetail data={currentFamily} onClose={onCloseFamilyDetail} />
+            <FamilyDetail
+              data={currentFamily}
+              onClose={onCloseFamilyDetail}
+              onUpdateFamilyDetail={onUpdateFamilyDetail}
+            />
           </div>
         )}
       </div>

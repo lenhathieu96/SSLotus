@@ -36,9 +36,11 @@ function FamilyOverviewComp({
       </div>
       <div className="flex flex-row items-baseline gap-XXXS ">
         <span className=" font-regular text-subtitle2">Chủ hộ:</span>
-        <span className=" text-body1 font-semibold">
-          {data.member[0].fullName}
-        </span>
+        {data.members.length > 0 ? (
+          <span className=" text-body1 font-semibold">
+            {data.members[0].fullName}
+          </span>
+        ) : null}
       </div>
     </button>
   );

@@ -1,6 +1,7 @@
 import { memo } from "react";
 import equals from "react-fast-compare";
 import { ArrowPathIcon, PlusIcon } from "@heroicons/react/24/outline";
+import { AppColor } from "@utils/constant";
 
 import Button from "@components/button";
 
@@ -16,8 +17,9 @@ const FamilyDetailFooterComp = ({
   onUpdate,
 }: Props) => {
   return (
-    <div className="flex w-3/5 flex-row items-end gap-L self-end">
+    <div className="flex w-3/5 flex-row justify-end gap-L self-end ">
       <Button
+        color={AppColor.blue[100]}
         disabled={!isUpdated}
         label="Cập nhập"
         leading={<ArrowPathIcon className=" h-LS w-LS text-white-100" />}

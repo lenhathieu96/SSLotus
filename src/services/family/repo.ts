@@ -18,7 +18,7 @@ export const FamilyService = {
           <Family>{
             id: parseInt(doc.id, 10),
             address: doc.data().address,
-            member: doc.data().member,
+            members: doc.data().member,
           },
       );
 
@@ -31,14 +31,10 @@ export const FamilyService = {
       return [];
     }
   },
-};
 
-// const importData = async () => {
-//   for (const data of DATA)
-//     try {
-//       const customDocRef = doc(firestore, "family", data.id.toString());
-//       setDoc(customDocRef, data);
-//     } catch (error) {
-//       console.error("Error adding document: ", error);
-//     }
-// };
+  updateFamilyProfile: (family: Family) => {
+    if (family.id === -1) {
+      // add new family
+    }
+  },
+};

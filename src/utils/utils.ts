@@ -10,7 +10,7 @@ const Utils = {
     modalRef.current?.show(ConfirmContent(props));
   },
 
-  showBlankModal: (content: ReactNode) => {
+  showCustomModal: (content: ReactNode) => {
     modalRef.current?.show(content);
   },
 };

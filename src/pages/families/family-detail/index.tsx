@@ -1,4 +1,4 @@
-import { memo, useCallback, useRef } from "react";
+import { memo, useMemo, useRef, useState } from "react";
 import equals from "react-fast-compare";
 import { useReactToPrint } from "react-to-print";
 import Utils from "@utils/utils";
@@ -7,10 +7,10 @@ import { Dayjs } from "dayjs";
 import FamilyDetailHeader from "@pages/families/family-detail/header";
 
 import CalendarContent from "@components/modal/calendar-content";
-import EditProfileForm from "@components/modal/edit-profile-form";
+import EditProfileForm from "@components/modal/edit-profile-content";
 import PrintView from "@components/print-view";
 
-import { Family, Person } from "@models";
+import { Appointment, Family, Person } from "@models";
 
 import FamilyDetailAddress from "./address";
 import FamilyDetailFooter from "./footer";
@@ -18,87 +18,140 @@ import MemberList from "./member-list";
 
 interface Props {
   data: Family;
+  onUpdateFamilyDetail: (family: Family) => void;
   onClose: () => void;
 }
 
-const FamilyDetailComp = ({ data, onClose }: Props) => {
+const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
   const printPreviewRef = useRef(null);
+
+  const [familyDetail, setFamilyDetail] = useState<Family>(data);
+
+  const isUpdated = useMemo(
+    () => !equals(data, familyDetail) && familyDetail.members.length > 0,
+    [familyDetail, data],
+  );
 
   const onPrint = useReactToPrint({
     content: () => printPreviewRef.current,
   });
-  const onAddressChange = useCallback((updateAddress: string) => {
-    console.log("Address changed: ", updateAddress);
-  }, []);
-  const onUpdateFamilyDetail = () => {
-    console.log("update profile");
+  const onSetAppointment = (date?: Dayjs) => {
+    const userAppointment = date
+      ? ({
+          type: "CA",
+          date: date.toDate(),
+        } satisfies Appointment)
+      : undefined;
+
+    setFamilyDetail({
+      ...familyDetail,
+      appointment: userAppointment,
+    });
   };
-  const onSetAppointment = (date: Dayjs) => {
-    console.log("set appointment at ", date);
+  const onAddressChange = (updateAddress: string) => {
+    if (updateAddress !== familyDetail.address) {
+      setFamilyDetail({
+        ...familyDetail,
+        address: updateAddress.toUpperCase(),
+      });
+    }
   };
   const onAddNewMember = (profile: Person) => {
-    console.log("Add new member :", profile);
+    setFamilyDetail({
+      ...familyDetail,
+      members: [...familyDetail.members, profile],
+    });
   };
-  const onRemoveMember = (profile: Person) => {
-    console.log("remove : ", profile.fullName);
+  const onUpdateMemberProfile = (profile: Person, index: number) => {
+    const tempMembers = [...familyDetail.members];
+    tempMembers[index] = profile;
+    setFamilyDetail({
+      ...familyDetail,
+      members: tempMembers,
+    });
   };
-  const onUpdateMemberProfile = (profile: Person) => {
-    console.log("update profile: ", profile);
+  const onRemoveMember = (index: number) => {
+    const tempMembers = [...familyDetail.members];
+    tempMembers.splice(index, 1);
+    setFamilyDetail({
+      ...familyDetail,
+      members: tempMembers,
+    });
   };
 
   //Handle button press event
   const onPressAddMember = () => {
-    Utils.showBlankModal(<EditProfileForm onSubmit={onAddNewMember} />);
+    Utils.showCustomModal(<EditProfileForm onSubmit={onAddNewMember} />);
   };
   const onPressSetAppointment = () => {
-    Utils.showBlankModal(<CalendarContent onConfirm={onSetAppointment} />);
-  };
-  const onPressRemoveMember = (profile: Person) => {
-    Utils.showConfirmModal({
-      title: "Bạn có chắc chắc xoá ?",
-      onConfirm: () => onRemoveMember(profile),
-    });
-  };
-
-  const onPressEditProfile = (profile: Person) => {
-    Utils.showBlankModal(
-      <EditProfileForm
-        defaultProfile={profile}
-        onSubmit={onUpdateMemberProfile}
+    Utils.showCustomModal(
+      <CalendarContent
+        defaultSelectedDate={familyDetail.appointment?.date}
+        onConfirm={onSetAppointment}
       />,
     );
+  };
+  const onPressRemoveMember = (index: number) => {
+    Utils.showConfirmModal({
+      title: "Bạn có chắc chắc xoá ?",
+      onConfirm: () => onRemoveMember(index),
+    });
+  };
+  const onPressEditProfile = (profile: Person, index: number) => {
+    Utils.showCustomModal(
+      <EditProfileForm
+        defaultProfile={profile}
+        onSubmit={(updatedProfile) =>
+          onUpdateMemberProfile(updatedProfile, index)
+        }
+      />,
+    );
+  };
+
+  const onPressCloseDetail = () => {
+    if (isUpdated) {
+      return Utils.showConfirmModal({
+        title: "Bạn có chắc chắn thoát ?",
+        description:
+          "Có một số thông tin bạn chưa lưu lại, khi thoát ra các thông tin ấy sẽ mất và không thể khôi phục",
+        onConfirm: onClose,
+      });
+    }
+    onClose();
   };
 
   return (
     <div className="flex h-full flex-col gap-L">
       {/**Header */}
       <FamilyDetailHeader
-        onClose={onClose}
+        appointmentDate={familyDetail.appointment?.date}
+        showControlOptions={familyDetail.members.length > 0}
+        onClose={onPressCloseDetail}
         onPrint={onPrint}
         onSetAppointment={onPressSetAppointment}
       />
 
       {/**Address */}
       <FamilyDetailAddress
-        defaultAddress={data.address}
+        defaultAddress={familyDetail.address.toUpperCase()}
         onAddressChange={onAddressChange}
       />
 
       <span className="font-semiBold text-subtitle2">Thành viên: </span>
       <MemberList
-        members={data.member}
+        members={familyDetail.members}
         onEditMemberProfile={onPressEditProfile}
         onRemoveMember={onPressRemoveMember}
       />
 
       <FamilyDetailFooter
-        isUpdated
+        isUpdated={isUpdated}
         onAddNewMember={onPressAddMember}
-        onUpdate={onUpdateFamilyDetail}
+        onUpdate={() => onUpdateFamilyDetail(familyDetail)}
       />
 
       <div className="hidden">
-        <PrintView ref={printPreviewRef} data={data} />
+        <PrintView ref={printPreviewRef} data={familyDetail} />
       </div>
     </div>
   );
