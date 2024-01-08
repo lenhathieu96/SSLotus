@@ -23,7 +23,7 @@ export default function AddFamilyContent({ onAddFamily }: Props) {
 
   return (
     <div className="flex flex-col gap-XXS">
-      <p className="text-center font-semiBold text-subtitle2">
+      <p className="text-center font-semiBold text-h4">
         Thêm thông tin hộ gia đình
       </p>
       <Form.Input

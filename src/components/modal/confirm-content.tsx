@@ -24,7 +24,7 @@ export default function ConfirmContent({
           <ExclamationTriangleIcon className=" h-XL w-XL text-red-200" />
         </div>
         <div className="flex flex-col gap-XXS">
-          <p className="text-subtitle2 font-semibold">{title}</p>
+          <p className="text-h4 font-semibold">{title}</p>
           <p className="font-regular text-body2 text-gray-400">{description}</p>
         </div>
       </div>

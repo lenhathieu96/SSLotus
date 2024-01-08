@@ -47,7 +47,7 @@ const FamilyDetailAddressComp = ({
 
   return (
     <div className="flex w-full flex-row items-center justify-between gap-XS">
-      <span className="font-semiBold text-subtitle2">Địa chỉ: </span>
+      <span className="font-semiBold text-h4">Địa chỉ: </span>
       <input
         ref={addressInputRef}
         className="flex-1 font-semiBold text-body1 focus:outline-none"

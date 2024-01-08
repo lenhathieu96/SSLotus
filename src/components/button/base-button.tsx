@@ -54,7 +54,7 @@ const BaseButtonComp = ({
     >
       {leading}
       <span
-        className="mx-XS text-body2 font-semibold"
+        className="mx-XXS line-clamp-1 text-left text-button2 font-semibold desktop:text-button1"
         style={{ color: labelColor }}
       >
         {label}

@@ -35,6 +35,7 @@ const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
   const onPrint = useReactToPrint({
     content: () => printPreviewRef.current,
   });
+
   const onSetAppointment = (date?: Dayjs) => {
     const userAppointment = date
       ? ({
@@ -107,7 +108,6 @@ const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
       />,
     );
   };
-
   const onPressCloseDetail = () => {
     if (isUpdated) {
       return Utils.showConfirmModal({
@@ -125,6 +125,7 @@ const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
       {/**Header */}
       <FamilyDetailHeader
         appointmentDate={familyDetail.appointment?.date}
+        printEnabled={!isUpdated}
         showControlOptions={familyDetail.members.length > 0}
         onClose={onPressCloseDetail}
         onPrint={onPrint}
@@ -137,7 +138,7 @@ const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
         onAddressChange={onAddressChange}
       />
 
-      <span className="font-semiBold text-subtitle2">Thành viên: </span>
+      <span className="font-semiBold text-h4">Thành viên: </span>
       <MemberList
         members={familyDetail.members}
         onEditMemberProfile={onPressEditProfile}

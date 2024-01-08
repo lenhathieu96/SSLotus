@@ -8,6 +8,7 @@ import Button from "@components/button";
 
 interface Props {
   showControlOptions: boolean;
+  printEnabled?: boolean;
   appointmentDate?: Date;
   onSetAppointment: () => void;
   onPrint: () => void;
@@ -20,6 +21,7 @@ const FamilyDetailHeaderComp = ({
   onClose,
   showControlOptions,
   appointmentDate,
+  printEnabled = true,
 }: Props) => {
   const lunarAppointmentDate = useMemo(() => {
     if (appointmentDate) {
@@ -35,15 +37,20 @@ const FamilyDetailHeaderComp = ({
         <Button
           color={AppColor.secondary[200]}
           label={lunarAppointmentDate ?? "Đặt lịch"}
-          leading={<CalendarIcon className="h-XL w-XL text-white-100" />}
+          leading={
+            <CalendarIcon className="h-LS w-LS text-white-100 desktop:h-XL desktop:w-XL" />
+          }
           onClick={onSetAppointment}
         />
       ) : null}
       {showControlOptions ? (
         <Button
           color={AppColor.blue[100]}
+          disabled={!printEnabled}
           label="In"
-          leading={<PrinterIcon className="h-XL w-XL text-white-100" />}
+          leading={
+            <PrinterIcon className="h-LS w-LS text-white-100 desktop:h-XL desktop:w-XL" />
+          }
           onClick={onPrint}
         />
       ) : null}

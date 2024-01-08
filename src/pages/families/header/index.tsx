@@ -25,7 +25,11 @@ const FamiliesHeaderComp = ({
         <Button
           disabled={!enableAddNewFamily}
           label="Thêm hộ mới"
-          leading={<PlusIcon className={`h-L w-L stroke-2 text-white-100`} />}
+          leading={
+            <PlusIcon
+              className={"h-LS w-LS text-white-100 desktop:h-XL desktop:w-XL"}
+            />
+          }
           onClick={onAddNewFamily}
         />
       </div>

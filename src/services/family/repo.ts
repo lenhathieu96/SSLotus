@@ -1,5 +1,6 @@
 import FamilyApi from "@remote/family-api";
 import Helper from "@utils/helper";
+import dayjs from "dayjs";
 
 import { Family } from "@models";
 
@@ -11,14 +12,14 @@ export const FamilyService = {
       }
       const isNumericQueryTxt = Helper.isNumeric(queryTxt);
       const response = isNumericQueryTxt
-        ? await FamilyApi.getFamiliesByID(queryTxt)
+        ? await FamilyApi.getFamiliesByID(parseInt(queryTxt, 10))
         : await FamilyApi.getFamiliesByAddress(queryTxt);
       const result = response.docs.map(
         (doc) =>
           <Family>{
             id: parseInt(doc.id, 10),
             address: doc.data().address,
-            members: doc.data().member,
+            members: doc.data().members,
           },
       );
 
@@ -32,9 +33,19 @@ export const FamilyService = {
     }
   },
 
-  updateFamilyProfile: (family: Family) => {
-    if (family.id === -1) {
-      // add new family
+  updateFamilyProfile: async (family: Family): Promise<boolean> => {
+    try {
+      const pagodaID = "TDHP";
+      const uploadFamilyProfile = { ...family };
+      if (family.id === -1) {
+        const timestamp = dayjs().unix();
+        uploadFamilyProfile.id = timestamp;
+      }
+      await FamilyApi.updateFamilyProfile(pagodaID, family);
+      return true;
+    } catch (error) {
+      console.log("Error on update family profile: ", error);
+      return false;
     }
   },
 };

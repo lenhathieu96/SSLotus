@@ -22,12 +22,16 @@ const FamilyDetailFooterComp = ({
         color={AppColor.blue[100]}
         disabled={!isUpdated}
         label="Cập nhập"
-        leading={<ArrowPathIcon className=" h-LS w-LS text-white-100" />}
+        leading={
+          <ArrowPathIcon className="h-LS w-LS text-white-100 desktop:h-XL desktop:w-XL" />
+        }
         onClick={onUpdate}
       />
       <Button
         label="Thêm thành viên"
-        leading={<PlusIcon className=" h-LS w-LS text-white-100" />}
+        leading={
+          <PlusIcon className="h-LS w-LS text-white-100 desktop:h-XL desktop:w-XL" />
+        }
         onClick={onAddNewMember}
       />
     </div>

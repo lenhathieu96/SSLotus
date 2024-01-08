@@ -56,17 +56,17 @@ const Modal = forwardRef<ModalRef>((_, ref) => {
         </Transition.Child>
 
         <div className="fixed inset-ZERO z-10 w-screen overflow-y-auto">
-          <div className=" flex min-h-full items-end justify-center p-XXXS text-center sm:items-center sm:p-ZERO">
+          <div className=" flex min-h-full items-end justify-center p-XXXS text-center tablet:items-center tablet:p-ZERO">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
-              enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              enterTo="opacity-100 translate-y-0 sm:scale-100"
+              enterFrom="opacity-0 translate-y-4 tablet:translate-y-0 tablet:scale-95"
+              enterTo="opacity-100 translate-y-0 tablet:scale-100"
               leave="ease-in duration-200"
-              leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-              leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              leaveFrom="opacity-100 translate-y-0 tablet:scale-100"
+              leaveTo="opacity-0 translate-y-4 tablet:translate-y-0 tablet:scale-95"
             >
-              <Dialog.Panel className="relative overflow-hidden rounded-2xl bg-white-100 p-MS text-left shadow-xl transition-all sm:my-XS sm:w-full sm:max-w-lg">
+              <Dialog.Panel className="relative overflow-hidden rounded-2xl bg-white-100 p-MS text-left shadow-xl transition-all tablet:my-XS tablet:w-full tablet:max-w-lg">
                 {modalContent}
               </Dialog.Panel>
             </Transition.Child>

@@ -18,6 +18,7 @@ export default function FamiliesPage() {
   const onSearchFamilies = useCallback(async (char: string) => {
     const data = await FamilyService.searchFamily(char);
     setFamilies(data);
+    setCurrentFamily(undefined);
   }, []);
 
   const onUpdateFamilyDetail = (family: Family) => {

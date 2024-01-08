@@ -2,12 +2,15 @@ import { forwardRef, LegacyRef } from "react";
 
 import { Family } from "@models";
 
+import "./index.css";
+
 import { DharmachakraPng } from "@assets/png";
 
 interface Props {
   data: Family;
 }
 
+const FIRST_PAGE_BREAK_INDEX = 14;
 const PAGE_BREAK_INDEX = 15;
 
 const PrintPreView = forwardRef(
@@ -16,35 +19,37 @@ const PrintPreView = forwardRef(
       "border-2 border-black-300 p-XXS font-medium text-body2";
 
     return (
-      <div ref={ref} className=" print: m-XL">
+      <div ref={ref}>
         <div className="flex flex-row items-center justify-between">
           <div className="flex w-1/5 bg-white-100">
             <img
               alt="DharmachakraPng"
-              className="h-auto w-full "
+              className=" h-[16] w-[16] "
               src={DharmachakraPng}
             />
           </div>
 
-          <div className="items-center justify-center">
-            <span className="text-printh1 font-semibold">CẦU AN</span>
+          <div className="flex grow flex-col items-center justify-center">
+            <p className="text-h1 font-semibold">CẦU AN</p>
+            <p className="font-medium text-body1">{data.address}</p>
           </div>
 
-          <div className="w-1/5 items-baseline justify-center border-2 border-black-300 px-XXXS">
-            <span className="font-regular text-body2">Mã sô: </span>
+          <div className="flex flex-col items-baseline justify-center border-2 border-black-300 px-XXS">
+            <span className="text-center font-regular text-body2">Mã sô: </span>
             <span className="text-body1 font-semibold">{data.id}</span>
           </div>
         </div>
+
         <table className="mt-XS w-full">
           <thead className="border-2 border-black-300">
             <tr>
+              <th className={`${baseCellStyles} w-1/12 font-semiBold`}>STT</th>
               <th className={`${baseCellStyles} w-1/2 font-semiBold`}>
                 HỌ VÀ TÊN
               </th>
               <th className={`${baseCellStyles} w-1/2 font-semiBold`}>
                 Pháp Danh
               </th>
-              <th className={`${baseCellStyles} w-1/4 font-semiBold`}>Tuổi</th>
             </tr>
           </thead>
           <tbody className="border-2 border-black-300">
@@ -53,16 +58,18 @@ const PrintPreView = forwardRef(
                 key={`table-key-${person.fullName}`}
                 style={{
                   pageBreakBefore:
-                    index === PAGE_BREAK_INDEX ? "always" : "auto",
-                  marginTop: index === PAGE_BREAK_INDEX ? "24px" : undefined,
+                    index === FIRST_PAGE_BREAK_INDEX ||
+                    (index > PAGE_BREAK_INDEX && index % PAGE_BREAK_INDEX === 0)
+                      ? "always"
+                      : "auto",
                 }}
               >
+                <td className={`${baseCellStyles} w-1/12 text-center `}>
+                  {index + 1}
+                </td>
                 <td className={`${baseCellStyles} w-1/2`}>{person.fullName}</td>
                 <td className={`${baseCellStyles} w-1/2`}>
                   {person.christineName}
-                </td>
-                <td className={`${baseCellStyles} w-1/4 text-center `}>
-                  {person.yob ? new Date().getFullYear() - person.yob : null}
                 </td>
               </tr>
             ))}

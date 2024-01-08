@@ -27,15 +27,15 @@ function FamilyOverviewComp({
       onClick={() => onClick(data.id)}
     >
       <div className="flex flex-row items-baseline gap-XXXS">
-        <span className=" font-regular text-subtitle2">Mã Số:</span>
+        <span className=" font-regular text-h4">Mã Số:</span>
         <span className=" text-body1 font-semibold">{data.id}</span>
       </div>
       <div className="flex flex-row items-baseline gap-XXXS ">
-        <span className=" font-regular text-subtitle2">Địa chỉ:</span>
+        <span className=" font-regular text-h4">Địa chỉ:</span>
         <span className=" text-body1 font-semibold">{data.address}</span>
       </div>
       <div className="flex flex-row items-baseline gap-XXXS ">
-        <span className=" font-regular text-subtitle2">Chủ hộ:</span>
+        <span className=" font-regular text-h4">Chủ hộ:</span>
         {data.members.length > 0 ? (
           <span className=" text-body1 font-semibold">
             {data.members[0].fullName}

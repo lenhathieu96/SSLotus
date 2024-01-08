@@ -64,12 +64,12 @@ export default function CalendarContent({
   return (
     <div className="flex flex-col gap-S">
       <div className="mb-S self-center">
-        <span className="font-semiBold text-subtitle1">Chọn ngày</span>
+        <span className="font-semiBold text-h3">Chọn ngày</span>
       </div>
 
       <div>
         <Calendar
-          className={"items-center text-center font-medium text-subtitle2"}
+          className={"items-center text-center font-medium text-h4"}
           locale="vi"
           navigationLabel={renderHeader}
           next2Label={null}

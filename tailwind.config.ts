@@ -3,6 +3,11 @@ import type { Config } from "tailwindcss";
 export default {
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
+    screens: {
+      tablet: "640px",
+      laptop: "1024px",
+      desktop: "1440px",
+    },
     colors: {
       primary: {
         100: "#53B175",
@@ -42,21 +47,23 @@ export default {
       transparent: "transparent",
     },
     fontFamily: {
-      light: "Gilroy-Light",
-      regular: "Gilroy-Regular",
-      medium: "Gilroy-Medium",
-      semiBold: "Gilroy-SemiBold",
-      bold: "Gilroy-Bold",
+      light: "Poppins-Light",
+      regular: "Poppins-Regular",
+      medium: "Poppins-Medium",
+      semiBold: "Poppins-SemiBold",
+      bold: "Poppins-Bold",
     },
     fontSize: {
-      h1: ["48px", "29px"],
-      h2: ["26px", "29px"],
-      h3: ["24px", "29px"],
-      printh1: ["32px", "29px"],
-      subtitle1: ["24px", "18px"],
-      subtitle2: ["18px", "18px"],
-      body1: ["16px", "18px"],
-      body2: ["14px", "18px"],
+      h1: "1.75rem", //28px
+      h2: "1.375rem", // 22px
+      h3: "1.25rem", // 20px
+      h4: "1.125rem", //18px
+      body1: "1rem", //16px
+      body2: "0.9375rem", //15px
+      body3: "0.8125rem", // 13px
+
+      button1: "1.125rem",
+      button2: "0.9375rem",
     },
     spacing: {
       ZERO: "0px",
@@ -75,19 +82,21 @@ export default {
       XXXL: "32px",
       EXTRA: "48px",
     },
-    borderWidth: {
-      1: "1px",
-      2: "2px",
-      3: "3px",
-      4: "4px",
-      5: "5px",
-    },
-    stroke: {
-      1: "1px",
-      2: "2px",
-      3: "3px",
-      4: "4px",
-      5: "5px",
+    extend: {
+      borderWidth: {
+        1: "1px",
+        2: "2px",
+        3: "3px",
+        4: "4px",
+        5: "5px",
+      },
+      stroke: {
+        1: "1px",
+        2: "2px",
+        3: "3px",
+        4: "4px",
+        5: "5px",
+      },
     },
   },
 } satisfies Config;
