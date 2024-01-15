@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import Utils from "@utils/utils";
 
 import AddFamilyContent from "@components/modal/add-family-content";
@@ -12,14 +13,14 @@ import FamilyOverView from "./family-overview";
 import FamiliesHeader from "./header";
 
 export default function FamiliesPage() {
-  const [families, setFamilies] = useState<Family[]>([]);
+  const [queryTxt, setQueryTxt] = useState<string>("");
   const [currentFamily, setCurrentFamily] = useState<Family | undefined>();
 
-  const onSearchFamilies = useCallback(async (char: string) => {
-    const data = await FamilyService.searchFamily(char);
-    setFamilies(data);
-    setCurrentFamily(undefined);
-  }, []);
+  const { data: families } = useQuery({
+    queryKey: ["SEARCH_FAMILIES", queryTxt],
+    queryFn: () => FamilyService.searchFamily(queryTxt),
+    initialData: [],
+  });
 
   const onUpdateFamilyDetail = (family: Family) => {
     setCurrentFamily(family);
@@ -33,15 +34,15 @@ export default function FamiliesPage() {
       members: [],
     };
     setCurrentFamily(tempFamily);
-    setFamilies([tempFamily]);
   };
+
   const onPressAddNewFamily = () => {
     Utils.showCustomModal(<AddFamilyContent onAddFamily={onAddFamily} />);
   };
 
   const onCloseFamilyDetail = useCallback(() => {
     if (currentFamily?.id === -1) {
-      setFamilies([]);
+      setQueryTxt("");
     }
     setCurrentFamily(undefined);
   }, [currentFamily]);
@@ -64,7 +65,7 @@ export default function FamiliesPage() {
       <FamiliesHeader
         enableAddNewFamily={currentFamily?.id !== -1}
         onAddNewFamily={onPressAddNewFamily}
-        onSearchFamilies={onSearchFamilies}
+        onSearchFamilies={setQueryTxt}
       />
 
       <div className="flex h-full w-full flex-row gap-MS overflow-hidden">

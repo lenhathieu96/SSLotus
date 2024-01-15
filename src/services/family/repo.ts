@@ -10,6 +10,10 @@ export const FamilyService = {
       if (!queryTxt) {
         throw new Error("Query string is null");
       }
+      if (queryTxt.length < 3) {
+        throw new Error("Query string is too short");
+      }
+
       const isNumericQueryTxt = Helper.isNumeric(queryTxt);
       const response = isNumericQueryTxt
         ? await FamilyApi.getFamiliesByID(parseInt(queryTxt, 10))
@@ -40,8 +44,12 @@ export const FamilyService = {
       if (family.id === -1) {
         const timestamp = dayjs().unix();
         uploadFamilyProfile.id = timestamp;
+        await FamilyApi.addFamily(pagodaID, uploadFamilyProfile);
+        console.log("created family: ", uploadFamilyProfile.id);
+      } else {
+        await FamilyApi.updateFamilyProfile(pagodaID, uploadFamilyProfile);
+        console.log("updated family: ", family.id);
       }
-      await FamilyApi.updateFamilyProfile(pagodaID, family);
       return true;
     } catch (error) {
       console.log("Error on update family profile: ", error);

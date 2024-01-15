@@ -4,6 +4,7 @@ import {
   getDocs,
   orderBy,
   query,
+  setDoc,
   startAt,
   updateDoc,
   where,
@@ -38,7 +39,19 @@ const FamilyApi = {
       "families",
       family.id.toString(),
     );
+
     return await updateDoc(docRef, family);
+  },
+
+  addFamily: async (pagodaID: string, family: Family) => {
+    const docRef = doc(
+      firestore,
+      "pagoda",
+      pagodaID,
+      "families",
+      family.id.toString(),
+    );
+    return await setDoc(docRef, family);
   },
 };
 

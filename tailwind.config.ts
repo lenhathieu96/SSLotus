@@ -50,7 +50,7 @@ export default {
       light: "Poppins-Light",
       regular: "Poppins-Regular",
       medium: "Poppins-Medium",
-      semiBold: "Poppins-SemiBold",
+      semibold: "Poppins-SemiBold",
       bold: "Poppins-Bold",
     },
     fontSize: {

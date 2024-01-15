@@ -58,6 +58,7 @@ export default function EditProfileForm({
       />
       <Controller
         control={control}
+        defaultValue=""
         name="christineName"
         render={({ field: { value, onChange } }) => (
           <Form.Input

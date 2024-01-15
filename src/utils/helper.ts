@@ -16,9 +16,9 @@ const Helper = {
     );
   },
 
-  getDisplayLunarDate: (date: Lunar) => {
+  getDisplayLunarDate: (date: Lunar, dayOnly = false) => {
     const day = date.getDay();
-    const displayDay = day > 10 ? day : `Mồng ${day}`;
+    const displayDay = day > 10 ? day.toString() : `Mồng ${day}`;
     const month = date.getMonth();
     let displayMonth = month.toString();
     if (month === 12) {
@@ -28,6 +28,9 @@ const Helper = {
       displayMonth = "Giêng";
     }
 
+    if (dayOnly) {
+      return displayDay;
+    }
     return `${displayDay} Tháng ${displayMonth}`;
   },
 };
