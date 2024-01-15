@@ -1,4 +1,5 @@
-import { forwardRef, LegacyRef } from "react";
+import { forwardRef, LegacyRef, useMemo } from "react";
+import Helper from "@utils/helper";
 
 import { Family } from "@models";
 
@@ -18,6 +19,17 @@ const PrintPreView = forwardRef(
     const baseCellStyles =
       "border-2 border-black-300 p-XXS font-medium text-body2";
 
+    const appointmentDate = useMemo(() => {
+      if (data.appointment?.date) {
+        const lunarDate = Helper.convertSolarToLunarDate(
+          data.appointment?.date,
+        );
+        return Helper.getDisplayLunarDate(lunarDate, true);
+      }
+
+      return "";
+    }, [data.appointment?.date]);
+
     return (
       <div ref={ref}>
         <div className="flex flex-row items-center justify-between">
@@ -31,12 +43,17 @@ const PrintPreView = forwardRef(
 
           <div className="flex grow flex-col items-center justify-center">
             <p className="text-h1 font-semibold">CẦU AN</p>
-            <p className="font-medium text-body1">{data.address}</p>
+            <p className="text-h3 font-semibold">{data.address}</p>
           </div>
 
-          <div className="flex flex-col items-baseline justify-center border-2 border-black-300 px-XXS">
-            <span className="text-center font-regular text-body2">Mã sô: </span>
-            <span className="text-body1 font-semibold">{data.id}</span>
+          <div className="flex flex-col items-center gap-XXXS">
+            <span className="text-h3 font-semibold">{appointmentDate}</span>
+            <div className="flex flex-col items-center justify-center border-2 border-black-300  px-XXS">
+              <span className="text-center font-regular text-body2">
+                Mã sô:
+              </span>
+              <span className="text-body1 font-semibold">{data.id}</span>
+            </div>
           </div>
         </div>
 
