@@ -38,7 +38,10 @@ const FamilyDetailHeaderComp = ({
           color={AppColor.secondary[200]}
           label={lunarAppointmentDate ?? "Đặt lịch"}
           leading={
-            <CalendarIcon className="h-LS w-LS text-white-100 desktop:h-XL desktop:w-XL" />
+            <CalendarIcon
+              className="h-LS w-LS text-white-100 desktop:h-XL desktop:w-XL"
+              strokeWidth={2}
+            />
           }
           onClick={onSetAppointment}
         />
@@ -49,7 +52,10 @@ const FamilyDetailHeaderComp = ({
           disabled={!printEnabled}
           label="In"
           leading={
-            <PrinterIcon className="h-LS w-LS text-white-100 desktop:h-XL desktop:w-XL" />
+            <PrinterIcon
+              className="h-LS w-LS text-white-100 desktop:h-XL desktop:w-XL"
+              strokeWidth={2}
+            />
           }
           onClick={onPrint}
         />

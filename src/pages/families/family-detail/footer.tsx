@@ -23,14 +23,20 @@ const FamilyDetailFooterComp = ({
         disabled={!isUpdated}
         label="Cập nhập"
         leading={
-          <ArrowPathIcon className="h-LS w-LS text-white-100 desktop:h-XL desktop:w-XL" />
+          <ArrowPathIcon
+            className="h-LS w-LS text-white-100 desktop:h-XL desktop:w-XL"
+            strokeWidth={2}
+          />
         }
         onClick={onUpdate}
       />
       <Button
         label="Thêm thành viên"
         leading={
-          <PlusIcon className="h-LS w-LS text-white-100 desktop:h-XL desktop:w-XL" />
+          <PlusIcon
+            className="h-LS w-LS text-white-100 desktop:h-XL desktop:w-XL"
+            strokeWidth={2}
+          />
         }
         onClick={onAddNewMember}
       />

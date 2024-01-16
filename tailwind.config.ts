@@ -47,11 +47,11 @@ export default {
       transparent: "transparent",
     },
     fontFamily: {
-      light: "Poppins-Light",
-      regular: "Poppins-Regular",
-      medium: "Poppins-Medium",
-      semibold: "Poppins-SemiBold",
-      bold: "Poppins-Bold",
+      light: "Rasa-Light",
+      regular: "Rasa-Regular",
+      medium: "Rasa-Medium",
+      semibold: "Rasa-SemiBold",
+      bold: "Rasa-Bold",
     },
     fontSize: {
       h1: "1.75rem", //28px

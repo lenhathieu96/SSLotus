@@ -27,7 +27,10 @@ const FamiliesHeaderComp = ({
           label="Thêm hộ mới"
           leading={
             <PlusIcon
-              className={"h-LS w-LS text-white-100 desktop:h-XL desktop:w-XL"}
+              strokeWidth={2}
+              className={
+                " h-XL w-XL text-white-100 desktop:h-XXL desktop:w-XXL"
+              }
             />
           }
           onClick={onAddNewFamily}

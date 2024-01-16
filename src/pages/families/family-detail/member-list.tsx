@@ -21,14 +21,14 @@ const MemberListComp = ({
       {members.map((member, index) => (
         <div
           key={`key-${member.fullName}`}
-          className="mb-XS flex flex-row justify-between border-b-2 py-XXXS"
+          className="mb-XS flex flex-row items-center justify-between border-b-2 py-XXXS"
         >
-          <div className="flex flex-col gap-XS ">
-            <p className="text-body1 font-semibold">{member.fullName}</p>
+          <div className="flex flex-col gap-XS">
+            <p className="font-semibold text-body1">{member.fullName}</p>
             {member.christineName && (
               <div className="ml-XS flex flex-row items-baseline gap-XXXS">
                 <p className="font-regular text-body1">Pháp danh: </p>
-                <p className="text-body1 font-semibold">
+                <p className="font-semibold text-body1">
                   {member.christineName}
                 </p>
               </div>

@@ -4,23 +4,23 @@
 
 @layer base{
     @font-face {
-        font-family:"Poppins-Bold";
-        src: url('assets/fonts/Poppins-Bold.ttf');
+        font-family:"Rasa-Bold";
+        src: url('assets/fonts/Rasa-Bold.ttf');
     }
     @font-face {
-        font-family:"Poppins-Light";
-        src: url('assets/fonts/Poppins-Light.ttf');
+        font-family:"Rasa-Light";
+        src: url('assets/fonts/Rasa-Light.ttf');
     }   
     @font-face {
-        font-family:"Poppins-Regular";
-        src: url('assets/fonts/Poppins-Regular.ttf');
+        font-family:"Rasa-Regular";
+        src: url('assets/fonts/Rasa-Regular.ttf');
     }    
     @font-face {
-        font-family:"Poppins-Medium";
-        src: url('assets/fonts/Poppins-Medium.ttf');
+        font-family:"Rasa-Medium";
+        src: url('assets/fonts/Rasa-Medium.ttf');
     }   
     @font-face {
-        font-family:"Poppins-SemiBold";
-        src: url('assets/fonts/Poppins-SemiBold.ttf');
+        font-family:"Rasa-SemiBold";
+        src: url('assets/fonts/Rasa-SemiBold.ttf');
     } 
 }
