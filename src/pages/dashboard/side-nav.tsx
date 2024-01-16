@@ -46,7 +46,7 @@ export default function SideNavBar() {
       {/**Navbar Header */}
       <div className="flex h-auto flex-row items-center py-XL">
         <LogoIcon height={64} width={64} />
-        <span className="ml-XS font-semiBold text-h1 tablet:hidden desktop:inline-block ">
+        <span className="ml-XS font-semibold text-h1 tablet:hidden desktop:inline-block ">
           SSLotus
         </span>
       </div>

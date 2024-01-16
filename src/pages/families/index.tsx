@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 import Utils from "@utils/utils";
 
@@ -23,8 +24,23 @@ export default function FamiliesPage() {
   });
 
   const onUpdateFamilyDetail = (family: Family) => {
-    setCurrentFamily(family);
-    FamilyService.updateFamilyProfile(family);
+    toast.promise(FamilyService.updateFamilyProfile(family), {
+      error: {
+        render() {
+          return "Cập nhập thất bại";
+        },
+        type: "error",
+        theme: "colored",
+      },
+      success: {
+        render() {
+          setCurrentFamily(family);
+          return "Cập nhập thành công";
+        },
+        type: "success",
+        theme: "colored",
+      },
+    });
   };
 
   const onAddFamily = (address: string) => {

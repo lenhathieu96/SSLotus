@@ -20,7 +20,7 @@ export default function FormInput({
 
   return (
     <div className="flex w-full flex-col gap-XXXS">
-      <p className="font-semiBold text-body1 text-black-300">{title}</p>
+      <p className="font-semibold text-body1 text-black-300">{title}</p>
 
       <div className="flex h-EXTRA flex-col justify-center  py-XS">
         <input

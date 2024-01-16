@@ -64,7 +64,7 @@ export default function CalendarContent({
   return (
     <div className="flex flex-col gap-S">
       <div className="mb-S self-center">
-        <span className="font-semiBold text-h3">Chọn ngày</span>
+        <span className="font-semibold text-h3">Chọn ngày</span>
       </div>
 
       <div>

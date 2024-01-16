@@ -42,17 +42,17 @@ const PrintPreView = forwardRef(
           </div>
 
           <div className="flex grow flex-col items-center justify-center">
-            <p className="text-h1 font-semibold">CẦU AN</p>
-            <p className="text-h3 font-semibold">{data.address}</p>
+            <p className="font-semibold text-h1">CẦU AN</p>
+            <p className="font-semibold text-h3">{data.address}</p>
           </div>
 
           <div className="flex flex-col items-center gap-XXXS">
-            <span className="text-h3 font-semibold">{appointmentDate}</span>
+            <span className="font-semibold text-h3">{appointmentDate}</span>
             <div className="flex flex-col items-center justify-center border-2 border-black-300  px-XXS">
               <span className="text-center font-regular text-body2">
                 Mã sô:
               </span>
-              <span className="text-body1 font-semibold">{data.id}</span>
+              <span className="font-semibold text-body1">{data.id}</span>
             </div>
           </div>
         </div>
@@ -60,11 +60,11 @@ const PrintPreView = forwardRef(
         <table className="mt-XS w-full">
           <thead className="border-2 border-black-300">
             <tr>
-              <th className={`${baseCellStyles} w-1/12 font-semiBold`}>STT</th>
-              <th className={`${baseCellStyles} w-1/2 font-semiBold`}>
+              <th className={`${baseCellStyles} w-1/12 font-semibold`}>STT</th>
+              <th className={`${baseCellStyles} w-1/2 font-semibold`}>
                 HỌ VÀ TÊN
               </th>
-              <th className={`${baseCellStyles} w-1/2 font-semiBold`}>
+              <th className={`${baseCellStyles} w-1/2 font-semibold`}>
                 Pháp Danh
               </th>
             </tr>

@@ -32,7 +32,7 @@ export default function EditProfileForm({
 
   return (
     <div className="flex flex-col gap-L">
-      <p className="text-center font-semiBold text-h4">Thông Tin Phật Tử</p>
+      <p className="text-center font-semibold text-h4">Thông Tin Phật Tử</p>
       <Controller
         control={control}
         name="fullName"

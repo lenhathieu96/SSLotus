@@ -138,7 +138,7 @@ const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
         onAddressChange={onAddressChange}
       />
 
-      <span className="font-semiBold text-h4">Thành viên: </span>
+      <span className="font-semibold text-h4">Thành viên: </span>
       <MemberList
         members={familyDetail.members}
         onEditMemberProfile={onPressEditProfile}

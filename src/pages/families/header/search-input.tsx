@@ -15,8 +15,8 @@ const SearchInputComp = ({ className, onQueryTxtChange }: Readonly<Props>) => {
         <MagnifyingGlassIcon className="h-LS w-LS" />
       </div>
       <input
-        className="ml-XS grow border-none bg-transparent focus:outline-none"
-        placeholder="Nhập tên chủ hộ hoặc mã hộ"
+        className="ml-XS grow border-none bg-transparent font-regular text-body1 focus:outline-none"
+        placeholder="Nhập địa chỉ nhà hoặc mã hộ"
         type="search"
         onChange={(e) => onQueryTxtChange(e.target.value)}
       />
