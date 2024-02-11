@@ -1,3 +1,5 @@
+import RootView from "@components/root-view";
+
 export default function CalendarPage() {
-  return <div>CalendarPage</div>;
+  return <RootView>Coming soon!</RootView>;
 }

@@ -5,7 +5,6 @@ import {
   orderBy,
   query,
   setDoc,
-  startAt,
   updateDoc,
   where,
 } from "firebase/firestore";
@@ -26,7 +25,8 @@ const FamilyApi = {
     const q = query(
       Collection,
       orderBy("address"),
-      startAt(queryTxt.toUpperCase()),
+      where("address", ">=", queryTxt.toUpperCase()),
+      where("address", "<=", queryTxt.toUpperCase() + "\uf8ff"),
     );
     return await getDocs(q);
   },

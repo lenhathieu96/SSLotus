@@ -23,6 +23,9 @@ const FamilyDetailAddressComp = ({
 
   const onInputBlur = () => {
     setIsEditingAddress(false);
+    if (defaultAddress !== inputValue) {
+      onAddressChange(inputValue);
+    }
   };
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,12 +37,6 @@ const FamilyDetailAddressComp = ({
       addressInputRef.current.focus();
     }
   }, [isEditingAddress, addressInputRef]);
-
-  useEffect(() => {
-    if (defaultAddress !== inputValue) {
-      onAddressChange(inputValue);
-    }
-  }, [inputValue, defaultAddress, onAddressChange]);
 
   useEffect(() => {
     setInputValue(defaultAddress);

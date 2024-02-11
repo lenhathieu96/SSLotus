@@ -88,7 +88,7 @@ export default function FamiliesPage() {
         <div
           className={`${
             currentFamily ? "w-2/5" : "w-full"
-          }  overflow-x-hidden overflow-y-scroll rounded-2xl bg-white-100 pl-XXS pt-XXS transition-all duration-500`}
+          }  no-scrollbar overflow-x-hidden overflow-y-scroll rounded-2xl pl-XXS pt-XXS transition-all duration-500`}
         >
           {families.map((family, index) => (
             <FamilyOverView

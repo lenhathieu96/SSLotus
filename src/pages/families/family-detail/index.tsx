@@ -1,4 +1,4 @@
-import { memo, useMemo, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 import equals from "react-fast-compare";
 import { useReactToPrint } from "react-to-print";
 import Utils from "@utils/utils";
@@ -23,10 +23,8 @@ interface Props {
 }
 
 const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
-  const printPreviewRef = useRef(null);
-
   const [familyDetail, setFamilyDetail] = useState<Family>(data);
-
+  const printPreviewRef = useRef(null);
   const isUpdated = useMemo(
     () => !equals(data, familyDetail) && familyDetail.members.length > 0,
     [familyDetail, data],
@@ -35,7 +33,6 @@ const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
   const onPrint = useReactToPrint({
     content: () => printPreviewRef.current,
   });
-
   const onSetAppointment = (date?: Dayjs) => {
     const userAppointment = date
       ? ({
@@ -119,6 +116,10 @@ const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
     }
     onClose();
   };
+
+  useEffect(() => {
+    setFamilyDetail(data);
+  }, [data]);
 
   return (
     <div className="flex h-full flex-col gap-L">

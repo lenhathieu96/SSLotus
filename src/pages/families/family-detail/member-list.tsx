@@ -20,7 +20,7 @@ const MemberListComp = ({
     <div className="flex-1 overflow-y-scroll">
       {members.map((member, index) => (
         <div
-          key={`key-${member.fullName}`}
+          key={`key-${member.fullName}-${index}`}
           className="mb-XS flex flex-row items-center justify-between border-b-2 py-XXXS"
         >
           <div className="flex flex-col gap-XS">
