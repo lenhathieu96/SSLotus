@@ -21,12 +21,16 @@ const FamilyApi = {
     return await getDocs(q);
   },
 
+  getAllFamilies: async () => {
+    return await getDocs(collection(firestore, "pagoda", "TDHP", "families"));
+  },
+
   getFamiliesByAddress: async (queryTxt: string) => {
     const q = query(
       Collection,
       orderBy("address"),
-      where("address", ">=", queryTxt.toUpperCase()),
-      where("address", "<=", queryTxt.toUpperCase() + "\uf8ff"),
+      where("address", ">=", queryTxt.toUpperCase() + "~"),
+      where("address", "<=", queryTxt.toUpperCase() + "~"),
     );
     return await getDocs(q);
   },

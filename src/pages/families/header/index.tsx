@@ -1,5 +1,6 @@
 import { memo } from "react";
 import equals from "react-fast-compare";
+import { useSearchBox } from "react-instantsearch";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { debounce } from "lodash";
 
@@ -10,17 +11,21 @@ import SearchInput from "./search-input";
 interface Props {
   enableAddNewFamily: boolean;
   onAddNewFamily: () => void;
-  onSearchFamilies: (query: string) => void;
 }
 
-const FamiliesHeaderComp = ({
-  enableAddNewFamily,
-  onAddNewFamily,
-  onSearchFamilies,
-}: Props) => {
+const FamiliesHeaderComp = ({ enableAddNewFamily, onAddNewFamily }: Props) => {
+  const { refine } = useSearchBox();
+
+  const searchFamilies = (queryTxt: string) => {
+    if (!queryTxt) {
+      return;
+    }
+    return refine(queryTxt);
+  };
+
   return (
     <div className="flex w-full flex-row items-center justify-between rounded-2xl bg-white-100 p-XS">
-      <SearchInput onQueryTxtChange={debounce(onSearchFamilies, 1000)} />
+      <SearchInput onQueryTxtChange={debounce(searchFamilies, 1000)} />
       <div>
         <Button
           disabled={!enableAddNewFamily}

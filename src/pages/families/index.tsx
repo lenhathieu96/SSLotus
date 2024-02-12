@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useHits } from "react-instantsearch";
 import { toast } from "react-toastify";
-import { useQuery } from "@tanstack/react-query";
 import Utils from "@utils/utils";
 
 import AddFamilyContent from "@components/modal/add-family-content";
 import RootView from "@components/root-view";
 
-import { Family } from "@models";
+import { Family, Person } from "@models";
 import { FamilyService } from "@services";
 
 import FamilyDetail from "./family-detail";
@@ -14,14 +14,21 @@ import FamilyOverView from "./family-overview";
 import FamiliesHeader from "./header";
 
 export default function FamiliesPage() {
-  const [queryTxt, setQueryTxt] = useState<string>("");
   const [currentFamily, setCurrentFamily] = useState<Family | undefined>();
+  const { hits } = useHits();
 
-  const { data: families } = useQuery({
-    queryKey: ["SEARCH_FAMILIES", queryTxt],
-    queryFn: () => FamilyService.searchFamily(queryTxt),
-    initialData: [],
-  });
+  const families: Family[] = useMemo(
+    () =>
+      hits.map(
+        (item) =>
+          ({
+            id: parseInt(item.objectID, 10),
+            address: item.address as string,
+            members: (item.members as Person[]) ?? [],
+          }) satisfies Family,
+      ),
+    [hits],
+  );
 
   const onUpdateFamilyDetail = (family: Family) => {
     toast.promise(FamilyService.updateFamilyProfile(family), {
@@ -57,11 +64,11 @@ export default function FamiliesPage() {
   };
 
   const onCloseFamilyDetail = useCallback(() => {
-    if (currentFamily?.id === -1) {
-      setQueryTxt("");
-    }
+    // if (currentFamily?.id === -1) {
+    //   setQueryTxt("");
+    // }
     setCurrentFamily(undefined);
-  }, [currentFamily]);
+  }, []);
 
   const onSeeFamilyDetail = useCallback(
     (id: number) => {
@@ -81,7 +88,6 @@ export default function FamiliesPage() {
       <FamiliesHeader
         enableAddNewFamily={currentFamily?.id !== -1}
         onAddNewFamily={onPressAddNewFamily}
-        onSearchFamilies={setQueryTxt}
       />
 
       <div className="flex h-full w-full flex-row gap-MS overflow-hidden">

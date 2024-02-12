@@ -37,6 +37,24 @@ export const FamilyService = {
     }
   },
 
+  getAllFamilies: async () => {
+    try {
+      const response = await FamilyApi.getAllFamilies();
+      const result = response.docs.map(
+        (doc) =>
+          <Family>{
+            id: parseInt(doc.id, 10),
+            address: doc.data().address,
+            members: doc.data().members,
+          },
+      );
+      return result;
+    } catch (error) {
+      console.log("Error on get all families: ", error);
+      return [];
+    }
+  },
+
   updateFamilyProfile: async (family: Family): Promise<boolean> => {
     try {
       const pagodaID = "TDHP";
