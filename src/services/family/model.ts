@@ -9,9 +9,9 @@ export interface Appointment {
   type: "CA";
 }
 
-export type Family = {
+export interface Family {
   id: number;
   address: string;
   members: Person[];
   appointment?: Appointment;
-};
+}

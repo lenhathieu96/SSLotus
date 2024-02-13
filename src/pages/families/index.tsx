@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useHits } from "react-instantsearch";
+import { useHits, useInstantSearch } from "react-instantsearch";
 import { toast } from "react-toastify";
 import Utils from "@utils/utils";
+
+import EmptyQueryBoundary from "@pages/families/empty-query-boundary";
 
 import AddFamilyContent from "@components/modal/add-family-content";
 import RootView from "@components/root-view";
 
-import { Family, Person } from "@models";
+import { Appointment, Family, Person } from "@models";
 import { FamilyService } from "@services";
 
 import FamilyDetail from "./family-detail";
@@ -16,19 +18,30 @@ import FamiliesHeader from "./header";
 export default function FamiliesPage() {
   const [currentFamily, setCurrentFamily] = useState<Family | undefined>();
   const { hits } = useHits();
+  const { refresh } = useInstantSearch();
 
   const families: Family[] = useMemo(
     () =>
       hits.map(
         (item) =>
           ({
-            id: parseInt(item.objectID, 10),
+            id: item.id as number,
             address: item.address as string,
             members: (item.members as Person[]) ?? [],
+            appointment: item.appointment
+              ? {
+                  type: "CA",
+                  date: new Date((item.appointment as Appointment).date),
+                }
+              : undefined,
           }) satisfies Family,
       ),
     [hits],
   );
+
+  const resetCurrentFamily = useCallback(() => {
+    setCurrentFamily(undefined);
+  }, []);
 
   const onUpdateFamilyDetail = (family: Family) => {
     toast.promise(FamilyService.updateFamilyProfile(family), {
@@ -48,6 +61,8 @@ export default function FamiliesPage() {
         theme: "colored",
       },
     });
+    //refresh algolia search cache
+    refresh();
   };
 
   const onAddFamily = (address: string) => {
@@ -64,9 +79,6 @@ export default function FamiliesPage() {
   };
 
   const onCloseFamilyDetail = useCallback(() => {
-    // if (currentFamily?.id === -1) {
-    //   setQueryTxt("");
-    // }
     setCurrentFamily(undefined);
   }, []);
 
@@ -78,16 +90,15 @@ export default function FamiliesPage() {
   );
 
   useEffect(() => {
-    if (families.length === 0) {
-      setCurrentFamily(undefined);
-    }
-  }, [families.length]);
+    resetCurrentFamily();
+  }, [families, resetCurrentFamily]);
 
   return (
     <RootView className="flex h-full flex-col items-start gap-XS py-XXS">
       <FamiliesHeader
         enableAddNewFamily={currentFamily?.id !== -1}
         onAddNewFamily={onPressAddNewFamily}
+        onClearQueryTxt={resetCurrentFamily}
       />
 
       <div className="flex h-full w-full flex-row gap-MS overflow-hidden">
@@ -96,15 +107,17 @@ export default function FamiliesPage() {
             currentFamily ? "w-2/5" : "w-full"
           }  no-scrollbar overflow-x-hidden overflow-y-scroll rounded-2xl pl-XXS pt-XXS transition-all duration-500`}
         >
-          {families.map((family, index) => (
-            <FamilyOverView
-              key={family.id}
-              className={`${index === 0 ? "" : "mt-XS"}`}
-              data={family}
-              isSelected={family.id === currentFamily?.id}
-              onClick={onSeeFamilyDetail}
-            />
-          ))}
+          <EmptyQueryBoundary fallback={null}>
+            {families.map((family, index) => (
+              <FamilyOverView
+                key={family.id}
+                className={`${index === 0 ? "" : "mt-XS"}`}
+                data={family}
+                isSelected={family.id === currentFamily?.id}
+                onClick={onSeeFamilyDetail}
+              />
+            ))}
+          </EmptyQueryBoundary>
         </div>
 
         {currentFamily && (

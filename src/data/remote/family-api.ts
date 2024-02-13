@@ -44,7 +44,10 @@ const FamilyApi = {
       family.id.toString(),
     );
 
-    return await updateDoc(docRef, family);
+    return await updateDoc(docRef, {
+      ...family,
+      appointment: family.appointment ?? null,
+    });
   },
 
   addFamily: async (pagodaID: string, family: Family) => {

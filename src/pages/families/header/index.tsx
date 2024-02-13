@@ -11,13 +11,23 @@ import SearchInput from "./search-input";
 interface Props {
   enableAddNewFamily: boolean;
   onAddNewFamily: () => void;
+  onClearQueryTxt?: () => void;
 }
 
-const FamiliesHeaderComp = ({ enableAddNewFamily, onAddNewFamily }: Props) => {
-  const { refine } = useSearchBox();
+const FamiliesHeaderComp = ({
+  enableAddNewFamily,
+  onAddNewFamily,
+  onClearQueryTxt,
+}: Props) => {
+  const { refine, clear } = useSearchBox();
 
   const searchFamilies = (queryTxt: string) => {
     if (!queryTxt) {
+      clear();
+      onClearQueryTxt?.();
+      return;
+    }
+    if (queryTxt.length < 3) {
       return;
     }
     return refine(queryTxt);
@@ -32,10 +42,8 @@ const FamiliesHeaderComp = ({ enableAddNewFamily, onAddNewFamily }: Props) => {
           label="Thêm hộ mới"
           leading={
             <PlusIcon
+              className={"h-XL w-XL text-white-100 desktop:h-XXL desktop:w-XXL"}
               strokeWidth={2}
-              className={
-                " h-XL w-XL text-white-100 desktop:h-XXL desktop:w-XXL"
-              }
             />
           }
           onClick={onAddNewFamily}
