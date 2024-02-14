@@ -5,12 +5,14 @@ interface Props {
   value?: string | number;
   error?: string;
   placeholder?: string;
+  defaultValue?: string;
   onChange: (value: string) => void;
 }
 
 export default function FormInput({
   title,
   value,
+  defaultValue,
   error,
   onChange,
 }: Readonly<Props>) {
@@ -25,6 +27,7 @@ export default function FormInput({
       <div className="flex h-EXTRA flex-col justify-center  py-XS">
         <input
           className={`rounded-2xl bg-gray-100 p-XS font-medium text-body1 outline-none ${borderStyle}`}
+          defaultValue={defaultValue}
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />

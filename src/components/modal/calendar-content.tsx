@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import {
   NavigationLabelFunc,
@@ -7,15 +7,20 @@ import {
   Value,
 } from "react-calendar/dist/cjs/shared/types";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import { PERIODS } from "@utils/constant";
 import Helper from "@utils/helper";
-import dayjs, { Dayjs } from "dayjs";
+import Utils from "@utils/utils";
+import dayjs from "dayjs";
 
 import Button from "@components/button";
 import { modalRef } from "@components/modal/index.ref";
 
+import { AppointmentDate, Period } from "@models";
+
 interface Props {
   defaultSelectedDate?: Date;
-  onConfirm: (selectedDate?: Dayjs) => void;
+  defaultPeriod?: Period;
+  onConfirm: (time: AppointmentDate) => void;
 }
 
 const TODAY = new Date();
@@ -23,9 +28,13 @@ const TODAY = new Date();
 export default function CalendarContent({
   onConfirm,
   defaultSelectedDate,
+  defaultPeriod,
 }: Readonly<Props>) {
   const [selectedDate, setSelectedDate] = useState<Value | undefined>(
     defaultSelectedDate,
+  );
+  const [selectedPeriod, setSelectedPeriod] = useState<Period>(
+    defaultPeriod ?? "UNKNOWN",
   );
 
   const beautifyDate: TileClassNameFunc = ({ date }) => {
@@ -45,7 +54,11 @@ export default function CalendarContent({
   };
 
   const renderHeader: NavigationLabelFunc = useCallback(({ date }) => {
-    return <div className="mb-XL">{`Tháng ${date.getMonth() + 1}`}</div>;
+    return (
+      <div className="mb-XL font-medium text-h2">{`Tháng ${
+        date.getMonth() + 1
+      }`}</div>
+    );
   }, []);
 
   const renderLunarDate: TileContentFunc = useCallback(({ date }) => {
@@ -60,6 +73,21 @@ export default function CalendarContent({
       >{`${lunarDate.getDay()}/${lunarDate.getMonth()}`}</p>
     );
   }, []);
+
+  const onPressConfirm = () => {
+    modalRef.current?.hide();
+
+    onConfirm({
+      period: selectedPeriod,
+      selectedDate: selectedDate ? dayjs(selectedDate?.toString()) : undefined,
+    });
+  };
+
+  useEffect(() => {
+    if (!selectedDate && selectedPeriod !== "UNKNOWN") {
+      setSelectedPeriod("UNKNOWN");
+    }
+  }, [selectedDate, selectedPeriod]);
 
   return (
     <div className="flex flex-col gap-S">
@@ -99,13 +127,27 @@ export default function CalendarContent({
         />
       </div>
 
-      <Button
-        label="Xác nhận"
-        onClick={() => {
-          modalRef.current?.hide();
-          onConfirm(selectedDate ? dayjs(selectedDate?.toString()) : undefined);
-        }}
-      />
+      <div className="flex flex-row justify-evenly gap-S">
+        {PERIODS.map((period) => {
+          return (
+            <div key={period} className="flex items-center">
+              <input
+                checked={period === selectedPeriod}
+                className="h-LS w-LS"
+                name="default-radio"
+                type="radio"
+                value=""
+                onClick={() => setSelectedPeriod(period)}
+              />
+              <span className="ml-XXXS font-medium text-h4 ">
+                {Utils.renderPeriod(period)}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+
+      <Button label="Xác nhận" onClick={onPressConfirm} />
     </div>
   );
 }

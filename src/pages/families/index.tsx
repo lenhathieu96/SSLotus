@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useHits, useInstantSearch } from "react-instantsearch";
 import { toast } from "react-toastify";
 import Utils from "@utils/utils";
@@ -16,35 +16,18 @@ import FamilyOverView from "./family-overview";
 import FamiliesHeader from "./header";
 
 export default function FamiliesPage() {
+  const [families, setFamilies] = useState<Family[]>([]);
   const [currentFamily, setCurrentFamily] = useState<Family | undefined>();
+
   const { hits } = useHits();
   const { refresh } = useInstantSearch();
-
-  const families: Family[] = useMemo(
-    () =>
-      hits.map(
-        (item) =>
-          ({
-            id: item.id as number,
-            address: item.address as string,
-            members: (item.members as Person[]) ?? [],
-            appointment: item.appointment
-              ? {
-                  type: "CA",
-                  date: new Date((item.appointment as Appointment).date),
-                }
-              : undefined,
-          }) satisfies Family,
-      ),
-    [hits],
-  );
 
   const resetCurrentFamily = useCallback(() => {
     setCurrentFamily(undefined);
   }, []);
 
-  const onUpdateFamilyDetail = (family: Family) => {
-    toast.promise(FamilyService.updateFamilyProfile(family), {
+  const onUpdateFamilyDetail = (updatedFamily: Family) => {
+    toast.promise(FamilyService.updateFamilyProfile(updatedFamily), {
       error: {
         render() {
           return "Cập nhập thất bại";
@@ -54,7 +37,7 @@ export default function FamiliesPage() {
       },
       success: {
         render() {
-          setCurrentFamily(family);
+          setCurrentFamily(updatedFamily);
           return "Cập nhập thành công";
         },
         type: "success",
@@ -63,6 +46,13 @@ export default function FamiliesPage() {
     });
     //refresh algolia search cache
     refresh();
+    const updatedFamilies = [...families].map((family) => {
+      if (family.id === updatedFamily.id) {
+        return { ...updatedFamily };
+      }
+      return { ...family };
+    });
+    setFamilies(updatedFamilies);
   };
 
   const onAddFamily = (address: string) => {
@@ -90,8 +80,23 @@ export default function FamiliesPage() {
   );
 
   useEffect(() => {
-    resetCurrentFamily();
-  }, [families, resetCurrentFamily]);
+    const familiesData = hits.map(
+      (item) =>
+        ({
+          id: item.id as number,
+          address: item.address as string,
+          members: (item.members as Person[]) ?? [],
+          appointment: item.appointment
+            ? {
+                type: "CA",
+                date: new Date((item.appointment as Appointment).date),
+                period: (item.appointment as Appointment).period,
+              }
+            : undefined,
+        }) satisfies Family,
+    );
+    setFamilies(familiesData);
+  }, [hits]);
 
   return (
     <RootView className="flex h-full flex-col items-start gap-XS py-XXS">
@@ -99,6 +104,7 @@ export default function FamiliesPage() {
         enableAddNewFamily={currentFamily?.id !== -1}
         onAddNewFamily={onPressAddNewFamily}
         onClearQueryTxt={resetCurrentFamily}
+        onStartSearching={resetCurrentFamily}
       />
 
       <div className="flex h-full w-full flex-row gap-MS overflow-hidden">

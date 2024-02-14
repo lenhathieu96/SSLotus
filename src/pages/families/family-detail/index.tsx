@@ -2,17 +2,17 @@ import { memo, useEffect, useMemo, useRef, useState } from "react";
 import equals from "react-fast-compare";
 import { useReactToPrint } from "react-to-print";
 import Utils from "@utils/utils";
-import { Dayjs } from "dayjs";
 
 import FamilyDetailHeader from "@pages/families/family-detail/header";
 
+import Button from "@components/button";
+import AddFamilyContent from "@components/modal/add-family-content";
 import CalendarContent from "@components/modal/calendar-content";
 import EditProfileForm from "@components/modal/edit-profile-content";
 import PrintView from "@components/print-view";
 
-import { Appointment, Family, Person } from "@models";
+import { Appointment, AppointmentDate, Family, Person } from "@models";
 
-import FamilyDetailAddress from "./address";
 import FamilyDetailFooter from "./footer";
 import MemberList from "./member-list";
 
@@ -24,6 +24,7 @@ interface Props {
 
 const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
   const [familyDetail, setFamilyDetail] = useState<Family>(data);
+
   const printPreviewRef = useRef(null);
   const isUpdated = useMemo(
     () => !equals(data, familyDetail) && familyDetail.members.length > 0,
@@ -33,11 +34,12 @@ const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
   const onPrint = useReactToPrint({
     content: () => printPreviewRef.current,
   });
-  const onSetAppointment = (date?: Dayjs) => {
-    const userAppointment = date
+  const onSetAppointment = (date: AppointmentDate) => {
+    const userAppointment = date.selectedDate
       ? ({
           type: "CA",
-          date: date.toDate(),
+          date: date.selectedDate.toDate(),
+          period: date.period,
         } satisfies Appointment)
       : undefined;
 
@@ -81,9 +83,18 @@ const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
   const onPressAddMember = () => {
     Utils.showCustomModal(<EditProfileForm onSubmit={onAddNewMember} />);
   };
+  const onPressChangeAddress = () => {
+    Utils.showCustomModal(
+      <AddFamilyContent
+        defaultAddress={familyDetail.address}
+        onAddFamily={onAddressChange}
+      />,
+    );
+  };
   const onPressSetAppointment = () => {
     Utils.showCustomModal(
       <CalendarContent
+        defaultPeriod={familyDetail.appointment?.period}
         defaultSelectedDate={familyDetail.appointment?.date}
         onConfirm={onSetAppointment}
       />,
@@ -134,10 +145,16 @@ const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
       />
 
       {/**Address */}
-      <FamilyDetailAddress
-        defaultAddress={familyDetail.address.toUpperCase()}
-        onAddressChange={onAddressChange}
-      />
+      <div className="flex w-full flex-row items-center justify-between gap-XS">
+        <span className="font-semibold text-h4">{`Địa chỉ: ${familyDetail.address}`}</span>
+        <Button.Icon
+          className="bg-transparent p-ZERO active:bg-transparent"
+          icon="PencilIcon"
+          iconColor="blue-100"
+          iconSize="LS"
+          onClick={onPressChangeAddress}
+        />
+      </div>
 
       <span className="font-semibold text-h4">{`Số lượng thành viên: ${familyDetail.members.length}`}</span>
       <MemberList

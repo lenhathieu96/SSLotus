@@ -1,4 +1,5 @@
 import { memo } from "react";
+import equals from "react-fast-compare";
 
 import { Family } from "@models";
 
@@ -39,6 +40,6 @@ function FamilyOverviewComp({
   );
 }
 
-const FamilyOverView = memo(FamilyOverviewComp);
+const FamilyOverView = memo(FamilyOverviewComp, equals);
 
 export default FamilyOverView;

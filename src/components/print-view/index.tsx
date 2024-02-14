@@ -1,5 +1,6 @@
 import { forwardRef, LegacyRef, useMemo } from "react";
 import Helper from "@utils/helper";
+import Utils from "@utils/utils";
 
 import { Family } from "@models";
 
@@ -24,11 +25,13 @@ const PrintPreView = forwardRef(
         const lunarDate = Helper.convertSolarToLunarDate(
           data.appointment?.date,
         );
-        return Helper.getDisplayLunarDate(lunarDate, true);
+        return `${Utils.renderPeriod(
+          data.appointment.period,
+        )} | ${Helper.getDisplayLunarDate(lunarDate, true)}`;
       }
 
       return "";
-    }, [data.appointment?.date]);
+    }, [data.appointment]);
 
     return (
       <div ref={ref}>

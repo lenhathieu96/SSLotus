@@ -12,12 +12,14 @@ interface Props {
   enableAddNewFamily: boolean;
   onAddNewFamily: () => void;
   onClearQueryTxt?: () => void;
+  onStartSearching: () => void;
 }
 
 const FamiliesHeaderComp = ({
   enableAddNewFamily,
   onAddNewFamily,
   onClearQueryTxt,
+  onStartSearching,
 }: Props) => {
   const { refine, clear } = useSearchBox();
 
@@ -30,6 +32,7 @@ const FamiliesHeaderComp = ({
     if (queryTxt.length < 3) {
       return;
     }
+    onStartSearching();
     return refine(queryTxt);
   };
 

@@ -6,10 +6,14 @@ import { modalRef } from "@components/modal/index.ref";
 
 interface Props {
   onAddFamily: (address: string) => void;
+  defaultAddress?: string;
 }
 
-export default function AddFamilyContent({ onAddFamily }: Props) {
-  const [address, setAddress] = useState<string>("");
+export default function AddFamilyContent({
+  onAddFamily,
+  defaultAddress,
+}: Props) {
+  const [address, setAddress] = useState<string>(defaultAddress ?? "");
 
   const error = useMemo(() => {
     if (address.length < 3) {
@@ -23,10 +27,9 @@ export default function AddFamilyContent({ onAddFamily }: Props) {
 
   return (
     <div className="flex flex-col gap-XXS">
-      <p className="text-center font-semibold text-h4">
-        Thêm thông tin hộ gia đình
-      </p>
+      <p className="text-center font-semibold text-h4">Chỉnh sửa địa chỉ</p>
       <Form.Input
+        defaultValue={defaultAddress}
         error={error}
         title="Địa chỉ"
         onChange={(text) => setAddress(text)}
@@ -34,7 +37,7 @@ export default function AddFamilyContent({ onAddFamily }: Props) {
       <div className="self-end">
         <Button
           disabled={Boolean(error)}
-          label="Thêm"
+          label="Xác nhận"
           onClick={() => {
             modalRef.current?.hide();
             onAddFamily(address);

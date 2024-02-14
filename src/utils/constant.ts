@@ -13,3 +13,5 @@ export const SEARCH_CLIENT = algoliasearch(
   "TMHHDJJ8E0",
   "5679b552565ea97339bc998684d9fe49",
 );
+
+export const PERIODS = ["MORNING", "AFTERNOON", "NOON", "UNKNOWN"] as const;
