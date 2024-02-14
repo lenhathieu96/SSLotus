@@ -11,13 +11,13 @@ interface Props {
   data: Family;
 }
 
-const FIRST_PAGE_BREAK_INDEX = 14;
-const PAGE_BREAK_INDEX = 15;
+const FIRST_PAGE_BREAK_INDEX = 12;
+const PAGE_BREAK_INDEX = 13;
 
 const PrintPreView = forwardRef(
   ({ data }: Props, ref: LegacyRef<HTMLDivElement>) => {
     const baseCellStyles =
-      "border-2 border-black-300 p-XXS font-medium text-body2";
+      "border-2 border-black-300 p-XXXS font-semibold text-h2";
 
     const appointmentDate = useMemo(() => {
       if (data.appointment?.date) {
