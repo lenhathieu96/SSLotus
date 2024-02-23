@@ -15,7 +15,7 @@ export interface AppointmentDate {
 export interface Appointment {
   period: Period;
   date: Date;
-  type: "CA";
+  type: "CA" | "CS";
 }
 
 export interface Family {

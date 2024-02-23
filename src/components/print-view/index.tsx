@@ -45,7 +45,9 @@ const PrintPreView = forwardRef(
           </div>
 
           <div className="flex grow flex-col items-center justify-center">
-            <p className="font-semibold text-h1">CẦU AN</p>
+            <p className="font-semibold text-h1">
+              {data.appointment?.type === "CA" ? "CẦU AN" : "CẦU SIÊU"}
+            </p>
             <p className="font-semibold text-h3">{data.address}</p>
           </div>
 

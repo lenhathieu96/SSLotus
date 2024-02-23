@@ -74,4 +74,16 @@ export const FamilyService = {
       return false;
     }
   },
+
+  addFamilyWithId: async (family: Family): Promise<boolean> => {
+    try {
+      const pagodaID = "TDHP";
+      await FamilyApi.addFamily(pagodaID, family);
+      console.log("updated family: ", family.id);
+      return true;
+    } catch (error) {
+      console.log("Error on add new family profile", error);
+      return false;
+    }
+  },
 };
