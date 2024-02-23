@@ -35,9 +35,10 @@ const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
     content: () => printPreviewRef.current,
   });
   const onSetAppointment = (date: AppointmentDate) => {
+    console.log(date.type);
     const userAppointment = date.selectedDate
       ? ({
-          type: "CA",
+          type: date.type,
           date: date.selectedDate.toDate(),
           period: date.period,
         } satisfies Appointment)
@@ -94,6 +95,7 @@ const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
   const onPressSetAppointment = () => {
     Utils.showCustomModal(
       <CalendarContent
+        defaultAppointmentType={familyDetail.appointment?.type}
         defaultPeriod={familyDetail.appointment?.period}
         defaultSelectedDate={familyDetail.appointment?.date}
         onConfirm={onSetAppointment}

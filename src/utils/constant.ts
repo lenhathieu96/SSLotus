@@ -15,3 +15,4 @@ export const SEARCH_CLIENT = algoliasearch(
 );
 
 export const PERIODS = ["MORNING", "AFTERNOON", "NOON", "UNKNOWN"] as const;
+export const APPOINTMENT_TYPES = ["CA", "CS"] as const;

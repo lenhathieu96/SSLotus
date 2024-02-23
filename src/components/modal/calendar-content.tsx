@@ -7,7 +7,7 @@ import {
   Value,
 } from "react-calendar/dist/cjs/shared/types";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import { PERIODS } from "@utils/constant";
+import { APPOINTMENT_TYPES, PERIODS } from "@utils/constant";
 import Helper from "@utils/helper";
 import Utils from "@utils/utils";
 import dayjs from "dayjs";
@@ -15,11 +15,12 @@ import dayjs from "dayjs";
 import Button from "@components/button";
 import { modalRef } from "@components/modal/index.ref";
 
-import { AppointmentDate, Period } from "@models";
+import { AppointmentDate, AppointmentType, Period } from "@models";
 
 interface Props {
   defaultSelectedDate?: Date;
   defaultPeriod?: Period;
+  defaultAppointmentType?: AppointmentType;
   onConfirm: (time: AppointmentDate) => void;
 }
 
@@ -29,6 +30,7 @@ export default function CalendarContent({
   onConfirm,
   defaultSelectedDate,
   defaultPeriod,
+  defaultAppointmentType,
 }: Readonly<Props>) {
   const [selectedDate, setSelectedDate] = useState<Value | undefined>(
     defaultSelectedDate,
@@ -36,6 +38,8 @@ export default function CalendarContent({
   const [selectedPeriod, setSelectedPeriod] = useState<Period>(
     defaultPeriod ?? "UNKNOWN",
   );
+  const [selectedAppointmentType, setSelectedAppointmentType] =
+    useState<AppointmentType>(defaultAppointmentType ?? "CA");
 
   const beautifyDate: TileClassNameFunc = ({ date }) => {
     const isSelectedDate =
@@ -79,6 +83,7 @@ export default function CalendarContent({
 
     onConfirm({
       period: selectedPeriod,
+      type: selectedAppointmentType,
       selectedDate: selectedDate ? dayjs(selectedDate?.toString()) : undefined,
     });
   };
@@ -93,6 +98,25 @@ export default function CalendarContent({
     <div className="flex flex-col gap-S">
       <div className="mb-S self-center">
         <span className="font-semibold text-h3">Chọn ngày</span>
+      </div>
+      <div className="flex flex-row justify-evenly gap-S">
+        {APPOINTMENT_TYPES.map((type) => {
+          return (
+            <div key={type} className="flex items-center">
+              <input
+                checked={type === selectedAppointmentType}
+                className="h-LS w-LS"
+                name="appointment-radio"
+                type="radio"
+                value=""
+                onClick={() => setSelectedAppointmentType(type)}
+              />
+              <span className="ml-XXXS font-medium text-h4 ">
+                {Utils.renderAppointmentTitle(type)}
+              </span>
+            </div>
+          );
+        })}
       </div>
 
       <div>

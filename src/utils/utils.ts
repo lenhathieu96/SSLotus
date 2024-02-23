@@ -5,7 +5,7 @@ import ConfirmContent, {
 } from "@components/modal/confirm-content";
 import { modalRef } from "@components/modal/index.ref";
 
-import { Period } from "@models";
+import { AppointmentType, Period } from "@models";
 
 const Utils = {
   showConfirmModal: (props: ConfirmContentProps) => {
@@ -26,6 +26,15 @@ const Utils = {
         return "Tối";
       default:
         return "Chùa Cúng";
+    }
+  },
+
+  renderAppointmentTitle: (type: AppointmentType) => {
+    switch (type) {
+      case "CS":
+        return "Cầu Siêu";
+      default:
+        return "Cầu An";
     }
   },
 };

@@ -1,7 +1,8 @@
-import { PERIODS } from "@utils/constant";
+import { APPOINTMENT_TYPES, PERIODS } from "@utils/constant";
 import { Dayjs } from "dayjs";
 
 export type Period = (typeof PERIODS)[number];
+export type AppointmentType = (typeof APPOINTMENT_TYPES)[number];
 
 export type Person = {
   fullName: string;
@@ -11,11 +12,12 @@ export type Person = {
 export interface AppointmentDate {
   period: Period;
   selectedDate?: Dayjs;
+  type: AppointmentType;
 }
 export interface Appointment {
   period: Period;
   date: Date;
-  type: "CA" | "CS";
+  type: AppointmentType;
 }
 
 export interface Family {
