@@ -4,7 +4,7 @@ import { useSearchBox } from "react-instantsearch";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { debounce } from "lodash";
 
-// import fs from "vite-plugin-fs/browser";
+// import WordExtractor from "word-extractor";
 import Button from "@components/button";
 
 import SearchInput from "./search-input";
@@ -39,12 +39,23 @@ const FamiliesHeaderComp = ({
 
   // const onAddFamilyWithId = async () => {
   //   try {
-  //     await FamilyService.addFamilyWithId({
-  //       id: 5732,
-  //       address: "11 KHU TẬP THỂ TT ĐƯỜNG BỘ - VĨNH HOÀ",
-  //       members: [{ christineName: "CHÚC THỬ", fullName: "DƯƠNG THỊ TỰ" }],
-  //     });
-  //     // const data = await FamilyService.getAllFamilies();
+  // const extractor = new WordExtractor();
+  // const files = await fs.readdir(FOLDER_PATH);
+  // const docFiles = files.filter((file) => file.endsWith(".doc"));
+  // const extracted = await extractor.extract(
+  //   `${FOLDER_PATH}/${docFiles[0]}`,
+  // );
+  // const data = extracted._body.replace(/\t{2,}/g, "") as string;
+  // const chunkData = data.split(/\n/g).filter((item) => item);
+  // console.log(chunkData);
+  // for (const file in docfiles) {
+  // }
+  // await FamilyService.addFamilyWithId({
+  //   id: 3220,
+  //   address: "XÓM 4 - TỔ DÂN PHỐ NGHĨA BÌNH - P.CAM NGHĨA - CAM RANH",
+  //   members: [{ christineName: "THỌ NGHĨA", fullName: "NGUYỄN THỊ TÍM" }],
+  // });
+  // const data = await FamilyService.getAllFamilies();
   // const idList = data
   //   .map((item) => item.id)
   //   .filter((idItem) => idItem < 1700000000);
@@ -73,7 +84,7 @@ const FamiliesHeaderComp = ({
         />
 
         {/* <Button
-          label="Thêm hộ mới với mã số"
+          label="CHEAT"
           leading={
             <ArrowUpIcon
               className={"h-XL w-XL text-white-100 desktop:h-XXL desktop:w-XXL"}
@@ -87,5 +98,4 @@ const FamiliesHeaderComp = ({
   );
 };
 
-const FamiliesHeader = memo(FamiliesHeaderComp, equals);
-export default FamiliesHeader;
+export default memo(FamiliesHeaderComp, equals);

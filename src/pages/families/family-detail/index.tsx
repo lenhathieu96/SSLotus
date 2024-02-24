@@ -35,10 +35,9 @@ const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
     content: () => printPreviewRef.current,
   });
   const onSetAppointment = (date: AppointmentDate) => {
-    console.log(date.type);
     const userAppointment = date.selectedDate
       ? ({
-          type: date.type,
+          type: "CA",
           date: date.selectedDate.toDate(),
           period: date.period,
         } satisfies Appointment)

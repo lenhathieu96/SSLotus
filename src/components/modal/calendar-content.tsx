@@ -7,7 +7,7 @@ import {
   Value,
 } from "react-calendar/dist/cjs/shared/types";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import { APPOINTMENT_TYPES, PERIODS } from "@utils/constant";
+import { PERIODS } from "@utils/constant";
 import Helper from "@utils/helper";
 import Utils from "@utils/utils";
 import dayjs from "dayjs";
@@ -30,7 +30,6 @@ export default function CalendarContent({
   onConfirm,
   defaultSelectedDate,
   defaultPeriod,
-  defaultAppointmentType,
 }: Readonly<Props>) {
   const [selectedDate, setSelectedDate] = useState<Value | undefined>(
     defaultSelectedDate,
@@ -38,8 +37,6 @@ export default function CalendarContent({
   const [selectedPeriod, setSelectedPeriod] = useState<Period>(
     defaultPeriod ?? "UNKNOWN",
   );
-  const [selectedAppointmentType, setSelectedAppointmentType] =
-    useState<AppointmentType>(defaultAppointmentType ?? "CA");
 
   const beautifyDate: TileClassNameFunc = ({ date }) => {
     const isSelectedDate =
@@ -83,7 +80,7 @@ export default function CalendarContent({
 
     onConfirm({
       period: selectedPeriod,
-      type: selectedAppointmentType,
+      type: "CA",
       selectedDate: selectedDate ? dayjs(selectedDate?.toString()) : undefined,
     });
   };
@@ -100,7 +97,7 @@ export default function CalendarContent({
         <span className="font-semibold text-h3">Chọn ngày</span>
       </div>
       <div className="flex flex-row justify-evenly gap-S">
-        {APPOINTMENT_TYPES.map((type) => {
+        {/* {APPOINTMENT_TYPES.map((type) => {
           return (
             <div key={type} className="flex items-center">
               <input
@@ -116,7 +113,7 @@ export default function CalendarContent({
               </span>
             </div>
           );
-        })}
+        })} */}
       </div>
 
       <div>
