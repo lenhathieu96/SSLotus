@@ -1,5 +1,6 @@
-import { APPOINTMENT_TYPES, PERIODS } from "@utils/constant";
 import { Dayjs } from "dayjs";
+
+import { APPOINTMENT_TYPES, PERIODS } from "@utils/constant";
 
 export type Period = (typeof PERIODS)[number];
 export type AppointmentType = (typeof APPOINTMENT_TYPES)[number];

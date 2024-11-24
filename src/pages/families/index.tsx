@@ -1,19 +1,18 @@
 import { useCallback, useEffect, useState } from "react";
 import { useHits, useInstantSearch } from "react-instantsearch";
 import { toast } from "react-toastify";
-import Utils from "@utils/utils";
-
-import EmptyQueryBoundary from "@pages/families/empty-query-boundary";
 
 import AddFamilyContent from "@components/modal/add-family-content";
 import RootView from "@components/root-view";
 
 import { Appointment, Family, Person } from "@models";
 import { FamilyService } from "@services";
+import Utils from "@utils/utils";
 
+import EmptyQueryBoundary from "./empty-query-boundary";
+import FamiliesListHeader from "./families-list-header";
 import FamilyDetail from "./family-detail";
 import FamilyOverView from "./family-overview";
-import FamiliesHeader from "./header";
 
 export default function FamiliesPage() {
   const [families, setFamilies] = useState<Family[]>([]);
@@ -100,7 +99,7 @@ export default function FamiliesPage() {
 
   return (
     <RootView className="flex h-full flex-col items-start gap-XS py-XXS">
-      <FamiliesHeader
+      <FamiliesListHeader
         enableAddNewFamily={currentFamily?.id !== -1}
         onAddNewFamily={onPressAddNewFamily}
         onClearQueryTxt={resetCurrentFamily}

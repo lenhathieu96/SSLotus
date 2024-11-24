@@ -7,15 +7,15 @@ import {
   Value,
 } from "react-calendar/dist/cjs/shared/types";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import { PERIODS } from "@utils/constant";
-import Helper from "@utils/helper";
-import Utils from "@utils/utils";
 import dayjs from "dayjs";
 
 import Button from "@components/button";
 import { modalRef } from "@components/modal/index.ref";
 
 import { AppointmentDate, AppointmentType, Period } from "@models";
+import { PERIODS } from "@utils/constant";
+import Helper from "@utils/helper";
+import Utils from "@utils/utils";
 
 interface Props {
   defaultSelectedDate?: Date;

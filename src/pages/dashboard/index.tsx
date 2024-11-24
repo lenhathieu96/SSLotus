@@ -1,8 +1,9 @@
 import { InstantSearch } from "react-instantsearch";
 import { Outlet } from "react-router-dom";
-import { SEARCH_CLIENT } from "@utils/constant";
 
 import RootView from "@components/root-view";
+
+import { SEARCH_CLIENT } from "@utils/constant";
 
 import SideNavBar from "./side-nav";
 

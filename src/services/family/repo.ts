@@ -1,42 +1,9 @@
 import FamilyApi from "@remote/family-api";
-import Helper from "@utils/helper";
 import dayjs from "dayjs";
 
 import { Family } from "@models";
 
 export const FamilyService = {
-  searchFamily: async (queryTxt: string): Promise<Family[]> => {
-    try {
-      if (!queryTxt) {
-        throw new Error("Query string is null");
-      }
-      if (queryTxt.length < 3) {
-        throw new Error("Query string is too short");
-      }
-
-      const isNumericQueryTxt = Helper.isNumeric(queryTxt);
-      const response = isNumericQueryTxt
-        ? await FamilyApi.getFamiliesByID(parseInt(queryTxt, 10))
-        : await FamilyApi.getFamiliesByAddress(queryTxt);
-      const result = response.docs.map(
-        (doc) =>
-          <Family>{
-            id: parseInt(doc.id, 10),
-            address: doc.data().address,
-            members: doc.data().members,
-          },
-      );
-
-      if (!isNumericQueryTxt) {
-        return result.filter((family) => family.address.startsWith(queryTxt));
-      }
-      return result;
-    } catch (error) {
-      console.log("Error on search family: ", error);
-      return [];
-    }
-  },
-
   getAllFamilies: async () => {
     try {
       const response = await FamilyApi.getAllFamilies();

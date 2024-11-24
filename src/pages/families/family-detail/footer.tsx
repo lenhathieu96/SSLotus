@@ -1,9 +1,10 @@
 import { memo } from "react";
 import equals from "react-fast-compare";
 import { ArrowPathIcon, PlusIcon } from "@heroicons/react/24/outline";
-import { AppColor } from "@utils/constant";
 
 import Button from "@components/button";
+
+import { AppColor } from "@utils/constant";
 
 interface Props {
   isUpdated: boolean;

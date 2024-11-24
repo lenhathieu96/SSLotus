@@ -2,11 +2,8 @@ import {
   collection,
   doc,
   getDocs,
-  orderBy,
-  query,
   setDoc,
   updateDoc,
-  where,
 } from "firebase/firestore";
 
 import { Family } from "@models";
@@ -16,23 +13,8 @@ import firestore from "./firebase-app";
 const Collection = collection(firestore, "pagoda", "TDHP", "families");
 
 const FamilyApi = {
-  getFamiliesByID: async (id: number) => {
-    const q = query(Collection, where("id", "==", id));
-    return await getDocs(q);
-  },
-
   getAllFamilies: async () => {
-    return await getDocs(collection(firestore, "pagoda", "TDHP", "families"));
-  },
-
-  getFamiliesByAddress: async (queryTxt: string) => {
-    const q = query(
-      Collection,
-      orderBy("address"),
-      where("address", ">=", queryTxt.toUpperCase() + "~"),
-      where("address", "<=", queryTxt.toUpperCase() + "~"),
-    );
-    return await getDocs(q);
+    return await getDocs(Collection);
   },
 
   updateFamilyProfile: async (pagodaID: string, family: Family) => {

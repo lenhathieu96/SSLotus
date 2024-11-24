@@ -1,27 +1,21 @@
-import { memo } from "react";
+import { FC, memo } from "react";
 import equals from "react-fast-compare";
 import { useSearchBox } from "react-instantsearch";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { debounce } from "lodash";
 
-// import WordExtractor from "word-extractor";
 import Button from "@components/button";
+
+import { FamilyListHeaderProps } from "../index.props";
 
 import SearchInput from "./search-input";
 
-interface Props {
-  enableAddNewFamily: boolean;
-  onAddNewFamily: () => void;
-  onClearQueryTxt?: () => void;
-  onStartSearching: () => void;
-}
-
-const FamiliesHeaderComp = ({
+const FamiliesListHeaderProps: FC<FamilyListHeaderProps> = ({
   enableAddNewFamily,
   onAddNewFamily,
   onClearQueryTxt,
   onStartSearching,
-}: Props) => {
+}) => {
   const { refine, clear } = useSearchBox();
 
   const searchFamilies = (queryTxt: string) => {
@@ -82,20 +76,9 @@ const FamiliesHeaderComp = ({
           }
           onClick={onAddNewFamily}
         />
-
-        {/* <Button
-          label="CHEAT"
-          leading={
-            <ArrowUpIcon
-              className={"h-XL w-XL text-white-100 desktop:h-XXL desktop:w-XXL"}
-              strokeWidth={2}
-            />
-          }
-          onClick={onAddFamilyWithId}
-        /> */}
       </div>
     </div>
   );
 };
 
-export default memo(FamiliesHeaderComp, equals);
+export default memo(FamiliesListHeaderProps, equals);

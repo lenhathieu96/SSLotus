@@ -1,7 +1,6 @@
 import { memo, useEffect, useMemo, useRef, useState } from "react";
 import equals from "react-fast-compare";
 import { useReactToPrint } from "react-to-print";
-import Utils from "@utils/utils";
 
 import FamilyDetailHeader from "@pages/families/family-detail/header";
 
@@ -12,6 +11,7 @@ import EditProfileForm from "@components/modal/edit-profile-content";
 import PrintView from "@components/print-view";
 
 import { Appointment, AppointmentDate, Family, Person } from "@models";
+import Utils from "@utils/utils";
 
 import FamilyDetailFooter from "./footer";
 import MemberList from "./member-list";
@@ -32,7 +32,7 @@ const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
   );
 
   const onPrint = useReactToPrint({
-    content: () => printPreviewRef.current,
+    // content: () => printPreviewRef.current,
   });
   const onSetAppointment = (date: AppointmentDate) => {
     const userAppointment = date.selectedDate

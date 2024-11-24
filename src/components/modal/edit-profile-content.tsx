@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { AppColor, VIETNAMESE_REG } from "@utils/constant";
 
 import Button from "@components/button";
 import Form from "@components/form";
 import { modalRef } from "@components/modal/index.ref";
 
 import { Person } from "@models";
+import { AppColor, VIETNAMESE_REG } from "@utils/constant";
 
 type Props = {
   defaultProfile?: Person;
