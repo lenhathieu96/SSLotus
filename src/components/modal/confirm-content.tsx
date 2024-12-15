@@ -1,4 +1,4 @@
-import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+// import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
 import Button from "@components/button";
 import { modalRef } from "@components/modal/index.ref";
@@ -19,20 +19,20 @@ export default function ConfirmContent({
   onCancel,
 }: Readonly<ConfirmContentProps>) {
   return (
-    <div className="flex flex-col gap-XXL">
-      <div className="flex flex-row items-center gap-MS">
-        <div className="justify-center rounded-full bg-red-100 p-MS">
-          <ExclamationTriangleIcon className=" h-XL w-XL text-red-200" />
+    <div className="flex flex-col gap-xxl">
+      <div className="flex flex-row items-center gap-m">
+        <div className="bg-red-100 justify-center rounded-full p-m">
+          {/* <ExclamationTriangleIcon className=" size-xl text-red-200" /> */}
         </div>
-        <div className="flex flex-col gap-XXS">
-          <p className="font-semibold text-h4">{title}</p>
-          <p className="font-regular text-body2 text-gray-400">{description}</p>
+        <div className="flex flex-col gap-xxs">
+          <p className="text-h4 font-semibold">{title}</p>
+          <p className="text-gray-400 text-body2 font-normal">{description}</p>
         </div>
       </div>
 
-      <div className="flex flex-row gap-S self-end">
+      <div className="flex flex-row gap-s self-end">
         <Button
-          color={AppColor.red[200]}
+          color={AppColor.pallet.red20}
           label="Từ Chối"
           mode="outline"
           onClick={() => {

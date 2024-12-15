@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
-import { useHits, useInstantSearch } from "react-instantsearch";
+import { useCallback, useState } from "react";
+import { useInstantSearch } from "react-instantsearch";
 import { toast } from "react-toastify";
 
 import AddFamilyContent from "@components/modal/add-family-content";
 import RootView from "@components/root-view";
 
-import { Appointment, Family, Person } from "@models";
+import { Family } from "@models";
 import { FamilyService } from "@services";
 import Utils from "@utils/utils";
 
@@ -18,7 +18,6 @@ export default function FamiliesPage() {
   const [families, setFamilies] = useState<Family[]>([]);
   const [currentFamily, setCurrentFamily] = useState<Family | undefined>();
 
-  const { hits } = useHits();
   const { refresh } = useInstantSearch();
 
   const resetCurrentFamily = useCallback(() => {
@@ -78,27 +77,27 @@ export default function FamiliesPage() {
     [families],
   );
 
-  useEffect(() => {
-    const familiesData = hits.map(
-      (item) =>
-        ({
-          id: item.id as number,
-          address: item.address as string,
-          members: (item.members as Person[]) ?? [],
-          appointment: item.appointment
-            ? {
-                type: "CA",
-                date: new Date((item.appointment as Appointment).date),
-                period: (item.appointment as Appointment).period,
-              }
-            : undefined,
-        }) satisfies Family,
-    );
-    setFamilies(familiesData);
-  }, [hits]);
+  // useEffect(() => {
+  //   const familiesData = hits.map(
+  //     (item) =>
+  //       ({
+  //         id: item.id as number,
+  //         address: item.address as string,
+  //         members: (item.members as Person[]) ?? [],
+  //         appointment: item.appointment
+  //           ? {
+  //               type: "CA",
+  //               date: new Date((item.appointment as Appointment).date),
+  //               period: (item.appointment as Appointment).period,
+  //             }
+  //           : undefined,
+  //       }) satisfies Family,
+  //   );
+  //   setFamilies(familiesData);
+  // }, [hits]);
 
   return (
-    <RootView className="flex h-full flex-col items-start gap-XS py-XXS">
+    <RootView className="flex h-full flex-col items-start gap-xs py-xxs">
       <FamiliesListHeader
         enableAddNewFamily={currentFamily?.id !== -1}
         onAddNewFamily={onPressAddNewFamily}
@@ -106,17 +105,17 @@ export default function FamiliesPage() {
         onStartSearching={resetCurrentFamily}
       />
 
-      <div className="flex h-full w-full flex-row gap-MS overflow-hidden">
+      <div className="flex size-full flex-row gap-m overflow-hidden">
         <div
           className={`${
             currentFamily ? "w-2/5" : "w-full"
-          }  no-scrollbar overflow-x-hidden overflow-y-scroll rounded-2xl pl-XXS pt-XXS transition-all duration-500`}
+          }  no-scrollbar overflow-x-hidden overflow-y-scroll rounded-2xl pl-xxs pt-xxs transition-all duration-500`}
         >
           <EmptyQueryBoundary fallback={null}>
             {families.map((family, index) => (
               <FamilyOverView
                 key={family.id}
-                className={`${index === 0 ? "" : "mt-XS"}`}
+                className={`${index === 0 ? "" : "mt-xs"}`}
                 data={family}
                 isSelected={family.id === currentFamily?.id}
                 onClick={onSeeFamilyDetail}
@@ -126,7 +125,7 @@ export default function FamiliesPage() {
         </div>
 
         {currentFamily && (
-          <div className="grow rounded-2xl  bg-white-100 p-XS transition-all duration-500">
+          <div className="grow  rounded-2xl p-xs transition-all duration-500">
             <FamilyDetail
               data={currentFamily}
               onClose={onCloseFamilyDetail}

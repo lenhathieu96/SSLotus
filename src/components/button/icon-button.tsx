@@ -1,18 +1,19 @@
 import { memo, useMemo } from "react";
 import equals from "react-fast-compare";
-import * as AppIcon from "@heroicons/react/24/outline";
 
 import { IIconButtonProps } from "./index.props";
+
+import * as AppIcon from "@assets/svgs";
 
 const IconButtonComp = ({
   icon,
   iconColor = "primary-100",
-  iconSize = "XL",
+  iconSize = "xl",
   disabled,
   className,
   onClick,
 }: Readonly<IIconButtonProps>) => {
-  const IconComponent = AppIcon[icon];
+  // const IconComponent = AppIcon[icon];
 
   const buttonColor = useMemo(() => {
     if (disabled) {
@@ -27,11 +28,11 @@ const IconButtonComp = ({
 
   return (
     <button
-      className={`cursor-pointer items-center justify-center rounded-2xl p-MS hover:opacity-80 ${buttonColor} ${className}`}
+      className={`cursor-pointer items-center justify-center rounded-2xl p-m hover:opacity-80 ${buttonColor} ${className}`}
       id="icon-button"
       onClick={onClick}
     >
-      <IconComponent className={`${size}`} />
+      {/* <IconComponent className={`${size}`} /> */}
     </button>
   );
 };

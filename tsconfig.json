@@ -26,15 +26,18 @@
       "@assets/*": ["assets/*"],
       "@components/*": ["components/*"],
       "@pages/*": ["pages/*"],
-      "@navigation/*": ["navigation/*"],
       "@utils/*": ["utils/*"],
       "@routes": ["routes"],
       "@remote/*": ["data/remote/*"],
       "@services": ["services"],
       "@models": ["services/index.model"],
+      "@theme/*": ["theme/*"],
+      "@hooks/*": ["hooks/*"],
+      "@routes/*": ["routes/*"],
       "@app/*": ["*"]
     }
   },
-  "include": ["src/**/*", "tailwind-colors.d.ts"],
+  "include": ["src", "tailwind.config.ts"],
+  "exclude": ["src/assets/svgs.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

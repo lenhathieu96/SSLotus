@@ -62,17 +62,14 @@ const FamiliesListHeaderProps: FC<FamilyListHeaderProps> = ({
   // };
 
   return (
-    <div className="flex w-full flex-row items-center justify-between rounded-2xl bg-white-100 p-XS">
+    <div className="flex w-full flex-row items-center justify-between rounded-2xl p-xs">
       <SearchInput onQueryTxtChange={debounce(searchFamilies, 1000)} />
       <div>
         <Button
           disabled={!enableAddNewFamily}
           label="Thêm hộ mới"
           leading={
-            <PlusIcon
-              className={"h-XL w-XL text-white-100 desktop:h-XXL desktop:w-XXL"}
-              strokeWidth={2}
-            />
+            <PlusIcon className={"size-xl desktop:size-xxl"} strokeWidth={2} />
           }
           onClick={onAddNewFamily}
         />

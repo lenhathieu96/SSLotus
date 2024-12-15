@@ -11,9 +11,9 @@ export default function DashboardPage() {
   return (
     <RootView className="h-screen">
       <SideNavBar />
-      <div className="flex-1 bg-gray-100 p-XS">
+      <div className="flex-1 bg-gray-100 p-xs">
         <InstantSearch
-          indexName="prod_FAMILY_ADDRESS"
+          indexName={import.meta.env.VITE_ALGOLIA_INDEX_NAME}
           searchClient={SEARCH_CLIENT}
         >
           <Outlet />

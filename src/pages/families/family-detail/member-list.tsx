@@ -21,32 +21,32 @@ const MemberListComp = ({
       {members.map((member, index) => (
         <div
           key={`key-${member.fullName}-${index}`}
-          className="mb-XS flex flex-row items-center justify-between border-b-2 py-XXXS"
+          className="mb-xs flex flex-row items-center justify-between border-b-2 py-xxxs"
         >
-          <div className="flex flex-col gap-XS">
-            <p className="font-semibold text-body1">{member.fullName}</p>
+          <div className="flex flex-col gap-xs">
+            <p className="text-body1 font-semibold">{member.fullName}</p>
             {member.christineName && (
-              <div className="ml-XS flex flex-row items-baseline gap-XXXS">
-                <p className="font-regular text-body1">Pháp danh: </p>
-                <p className="font-semibold text-body1">
+              <div className="ml-xs flex flex-row items-baseline gap-xxxs">
+                <p className="text-body1 font-normal">Pháp danh: </p>
+                <p className="text-body1 font-semibold">
                   {member.christineName}
                 </p>
               </div>
             )}
           </div>
 
-          <div className="flex flex-row gap-S pr-XXS">
+          <div className="flex flex-row gap-s pr-xxs">
             <Button.Icon
               icon="PencilIcon"
               iconColor="blue-100"
-              iconSize="LS"
+              iconSize="ls"
               onClick={() => onEditMemberProfile(member, index)}
             />
             <Button.Icon
-              className="bg-transparent p-ZERO active:bg-transparent"
+              className="bg-transparent p-zero active:bg-transparent"
               icon="TrashIcon"
               iconColor="red-200"
-              iconSize="LS"
+              iconSize="ls"
               onClick={() => onRemoveMember(index)}
             />
           </div>

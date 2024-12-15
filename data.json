@@ -1,0 +1,146 @@
+[
+  {
+    "id": 100,
+    "address": "297 LƯ CẤM - NGỌC HIỆP",
+    "members": [
+      { "fullName": "PHẠM THỊ LIỄU", "christineName": "NGUYÊN TÒNG" },
+      { "christineName": "THỌ LAN", "fullName": "NGUYỄN THỊ HỒNG HOA" },
+      { "christineName": "THỌ HOÀNG", "fullName": "NGUYỄN THỊ HỒNG TỐ NGA" },
+      { "christineName": "THỌ YẾN", "fullName": "NGUYỄN HỒNG HẢI" },
+      { "christineName": "THỌ PHƯƠNG", "fullName": "NGUYỄN HỒNG CƯỜNG" },
+      { "fullName": "NGUYỄN THỊ HỒNG PHƯỢNG", "christineName": "THỌ TÂM" },
+      { "christineName": "THỌ THỨ", "fullName": "NGUYỄN THỊ HỒNG DUNG" },
+      { "christineName": "THỌ CHỨC", "fullName": "NGUYỄN HỒNG DANH" },
+      { "christineName": "THỌ SƠN", "fullName": "LƯU TIẾN HẢI" },
+      { "fullName": "LƯU HOÀNG KHÁNH", "christineName": "THỌ TRANG" },
+      { "christineName": "THỌ HOÀNG", "fullName": "LƯU NỮ HÀ TRANG" },
+      { "fullName": "LƯU NỮ NGỌC QUỲNH", "christineName": "THỌ HOA" },
+      { "fullName": "CAO HỒNG TRƯỜNG GIANG", "christineName": "THỌ SƠN" },
+      { "christineName": "THỌ THÀNH", "fullName": "ĐINH NGUYỄN KIM HOÀNG " },
+      { "christineName": "TÂM ĐẠT", "fullName": "LẠI VĂN CUNG" },
+      { "christineName": "TÂM HUỆ", "fullName": "LẠI MINH TRÍ" },
+      { "fullName": "LẠI MINH TRUNG", "christineName": "TÂM NGHĨA" },
+      { "fullName": "PHẠM THỊ HUỆ ", "christineName": "HỮU KHAI " },
+      { "fullName": "PHAN THANH HẠNH ", "christineName": "THỌ PHÚC " },
+      { "fullName": "NGUYỄN HỒNG PHÚC ", "christineName": "THỌ LỘC" },
+      { "fullName": "NGUYỄN HỮU VINH", "christineName": "HỮU CƯỜNG " },
+      { "fullName": "NGUYỄN THÀNH NHƯ Ý ", "christineName": "HỮU BẢO" },
+      { "christineName": "", "fullName": "NGUYỄN THIÊN PHÚ " },
+      { "christineName": "THỌ GẤM ", "fullName": "NGUYỄN HỒNG TIẾN " },
+      { "christineName": "THỌ KIM", "fullName": "NGUYỄN HỒNG NGỌC" },
+      { "fullName": "NGUYỄN THÀNH ĐẠT ", "christineName": "THỌ TIẾN " }
+    ]
+  },
+  {
+    "id": 1000,
+    "address": "35 LẠC LONG QUÂN  ",
+    "members": [
+      { "fullName": "ĐỖ VĂN VIỆT", "christineName": "" },
+      { "christineName": "NGỌC THIÊN", "fullName": "HUỲNH THỊ HƯƠNG" },
+      { "christineName": "THIỆN TÂM", "fullName": "ĐỖ VĂN NAM" },
+      { "christineName": "NGỌC PHÚC", "fullName": "ĐỖ THỊ HOÀNG GIA" },
+      { "christineName": "NGỌC HẠNH", "fullName": "ĐỖ THỊ TUYẾT NHUNG" },
+      { "fullName": "ĐỖ THỊ CẨM TÚ", "christineName": "" }
+    ]
+  },
+  {
+    "id": 10000,
+    "address": "424 THANH MINH  DIÊN LẠC DIÊN KHÁNH ",
+    "members": [
+      { "christineName": "", "fullName": "NGUYỄN THỊ NGUYỆT" },
+      { "christineName": "", "fullName": "TRẦN QUANG ĐÀO" },
+      { "fullName": "TRẦN NGUYÊN BẢO NGÂN", "christineName": "THỌ HÀ" },
+      { "christineName": "", "fullName": "TRẦN NGUYÊN BẢO TRÂN" },
+      { "christineName": "", "fullName": "TRẦN QUANG HUY" },
+      { "christineName": "", "fullName": "NGUYỄN VĂN NGUYÊN" },
+      { "christineName": "", "fullName": "HỒ THỊ TRÂM" },
+      { "fullName": "NGUYỄN HỒ THU UYÊN", "christineName": "" },
+      { "fullName": "NGUYỄN HỒ THỦY TIÊN", "christineName": "" },
+      { "fullName": "NGUYỄN VĂN HÙNG", "christineName": "" },
+      { "christineName": "", "fullName": "NGUYỄN THỊ HƯỜNG" },
+      { "fullName": "NGUYỄN ANH NGỌC", "christineName": "THỌ CHÂU" },
+      { "christineName": "", "fullName": "NGUYỄN QUỐC PHONG" }
+    ]
+  },
+  {
+    "id": 10001,
+    "address": "42A LƯƠNG THẾ VINH  ",
+    "members": [
+      { "fullName": "LÊ THỊ LỢI", "christineName": "" },
+      { "fullName": "NGUYỄN THANH TÙNG", "christineName": "" },
+      { "fullName": "NGUYỄN THÀNH LONG", "christineName": "" }
+    ]
+  },
+  {
+    "id": 10002,
+    "address": "42A NHÀ CÔNG VỤ TRƯỜNG SỸ QUAN K.QUÂN  ",
+    "members": [
+      { "fullName": "NGUYỄN THỊ THIÊM", "christineName": "" },
+      { "christineName": "", "fullName": "TRỊNH NGỌC THIỆN" },
+      { "fullName": "TRỊNH NGỌC TUẤN", "christineName": "THỌ ANH" },
+      { "christineName": "", "fullName": "NGUYỄN VĂN THI" },
+      { "christineName": "", "fullName": "NGUYỄN THỊ THANH" },
+      { "christineName": "", "fullName": "TRỊNH THANH NHÀN" },
+      { "fullName": "TRỊNH THỊ MAI DUYỆN", "christineName": "" }
+    ]
+  },
+  {
+    "id": 10003,
+    "address": "42A PHÚ XƯƠNG  ",
+    "members": [
+      { "fullName": "TRẦN MINH CƯỜNG", "christineName": "TAM SƯƠNG" },
+      { "fullName": "NGÔ THỊ HUỆ", "christineName": "NGUYÊN TRÍ" },
+      { "fullName": "TRẦN MINH TOÀN", "christineName": "THỌ THẮNG" },
+      { "christineName": "THỌ ĐÔNG", "fullName": "TRẦN THỊ MINH PHƯƠNG" },
+      { "christineName": "NGUYÊN VŨ", "fullName": "HUỲNH THỊ BÍCH VÂN" }
+    ]
+  },
+  {
+    "id": 10004,
+    "address": "42B LƯƠNG THẾ VINH  ",
+    "members": [{ "christineName": "", "fullName": "NGUYỄN THỊ HOA" }]
+  },
+  {
+    "id": 10005,
+    "address": "43A TÂN AN  ",
+    "members": [
+      { "christineName": "QUẢNG THƯỜNG", "fullName": "TRƯƠNG ĐỨC TUY" },
+      { "christineName": "THỌ THIỆN", "fullName": "LƯƠNG HOÀNG LỆ HUYỀN" },
+      { "christineName": "THỌ CHÂU", "fullName": "TRƯƠNG ÁI TRÂN" },
+      { "fullName": "NGUYỄN THỊ NHU HOA", "christineName": "" },
+      { "christineName": "", "fullName": "PHAN THỊ THU NGÂN" },
+      { "fullName": "PHAN THÚY VÂN", "christineName": "" }
+    ]
+  },
+  {
+    "id": 10006,
+    "address": "43 BẾN CHỢ  ",
+    "members": [
+      { "fullName": "KHỔNG THÀNH", "christineName": "HỮU ĐẠT" },
+      { "christineName": "HỮU BẢO", "fullName": "LÂM THU DUNG" },
+      { "fullName": "KHỔNG LÂM NHỰT MINH", "christineName": "HỮU NGUYỆT" },
+      { "fullName": "NGUYỄN HỮU VŨ", "christineName": "" },
+      { "fullName": "NGUYỄN THỊ LAN", "christineName": "" },
+      { "fullName": "LÂM DU HIỆP", "christineName": "HỮU HÒA" },
+      { "christineName": "", "fullName": "NGUYỄN THỊ THANH THẢO" },
+      { "christineName": "", "fullName": "LÂM GIA HÂN" },
+      { "christineName": "", "fullName": "LÂM MINH HY" },
+      { "fullName": "LÂM DU THUẬN", "christineName": "HỮU TÚ" },
+      { "fullName": "LÂM MINH HOÀN", "christineName": "" },
+      { "fullName": "LÂM MINH HẢO", "christineName": "" },
+      { "fullName": "LÂM NHƯ Ý", "christineName": "" }
+    ]
+  },
+  {
+    "id": 10007,
+    "address": "43 ĐẶNG DUNG  ",
+    "members": [
+      { "christineName": "", "fullName": "LÊ TÙNG THANH" },
+      { "christineName": "", "fullName": "LÂM THỊ MINH HOÀNG" },
+      { "christineName": "", "fullName": "LE TÙNG MINH" },
+      { "fullName": "TRẦN NGỌC PHONG", "christineName": "" },
+      { "fullName": "TRẦN LÊ KHÔI MINH", "christineName": "" },
+      { "christineName": "", "fullName": "TRẦN LÊ KHÔI NGUYÊN" }
+    ]
+  }
+]

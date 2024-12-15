@@ -6,7 +6,6 @@ import {
   TileContentFunc,
   Value,
 } from "react-calendar/dist/cjs/shared/types";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import dayjs from "dayjs";
 
 import Button from "@components/button";
@@ -45,7 +44,7 @@ export default function CalendarContent({
 
     const isDisabledDate = dayjs(date).isBefore(dayjs(TODAY), "day");
 
-    return `mt-L px-L py-XXS font-medium text-body1 rounded-2xl ${
+    return `mt-l px-l py-xxs font-medium text-body1 rounded-2xl ${
       isSelectedDate
         ? "bg-primary-100/90 text-white-100"
         : isDisabledDate
@@ -56,7 +55,7 @@ export default function CalendarContent({
 
   const renderHeader: NavigationLabelFunc = useCallback(({ date }) => {
     return (
-      <div className="mb-XL font-medium text-h2">{`Tháng ${
+      <div className="mb-xl text-h2 font-medium">{`Tháng ${
         date.getMonth() + 1
       }`}</div>
     );
@@ -70,7 +69,7 @@ export default function CalendarContent({
 
     return (
       <p
-        className={`mt-XXS text-right text-body2 ${color}`}
+        className={`mt-xxs text-right text-body2 ${color}`}
       >{`${lunarDate.getDay()}/${lunarDate.getMonth()}`}</p>
     );
   }, []);
@@ -92,23 +91,23 @@ export default function CalendarContent({
   }, [selectedDate, selectedPeriod]);
 
   return (
-    <div className="flex flex-col gap-S">
-      <div className="mb-S self-center">
-        <span className="font-semibold text-h3">Chọn ngày</span>
+    <div className="flex flex-col gap-s">
+      <div className="mb-s self-center">
+        <span className="text-h3 font-semibold">Chọn ngày</span>
       </div>
-      <div className="flex flex-row justify-evenly gap-S">
+      <div className="flex flex-row justify-evenly gap-s">
         {/* {APPOINTMENT_TYPES.map((type) => {
           return (
             <div key={type} className="flex items-center">
               <input
                 checked={type === selectedAppointmentType}
-                className="h-LS w-LS"
+                className="h-ls w-ls"
                 name="appointment-radio"
                 type="radio"
                 value=""
                 onClick={() => setSelectedAppointmentType(type)}
               />
-              <span className="ml-XXXS font-medium text-h4 ">
+              <span className="ml-xxxs font-medium text-h4 ">
                 {Utils.renderAppointmentTitle(type)}
               </span>
             </div>
@@ -118,20 +117,16 @@ export default function CalendarContent({
 
       <div>
         <Calendar
-          className={"items-center text-center font-medium text-h4"}
+          className={"items-center text-center text-h4 font-medium"}
           locale="vi"
           navigationLabel={renderHeader}
           next2Label={null}
+          // nextLabel={<ChevronRightIcon className="ml-extra size-ls stroke-2" />}
           prev2Label={null}
+          // prevLabel={<ChevronLeftIcon className="mr-extra size-ls stroke-2" />}
           tileClassName={beautifyDate}
           tileContent={renderLunarDate}
           tileDisabled={({ date }) => dayjs(date).isBefore(dayjs(TODAY), "day")}
-          nextLabel={
-            <ChevronRightIcon className="ml-EXTRA h-LS w-LS stroke-2" />
-          }
-          prevLabel={
-            <ChevronLeftIcon className="mr-EXTRA h-LS w-LS stroke-2" />
-          }
           onChange={(date) => {
             if (
               dayjs(date?.toString()).isSame(
@@ -148,19 +143,19 @@ export default function CalendarContent({
         />
       </div>
 
-      <div className="flex flex-row justify-evenly gap-S">
+      <div className="flex flex-row justify-evenly gap-s">
         {PERIODS.map((period) => {
           return (
             <div key={period} className="flex items-center">
               <input
                 checked={period === selectedPeriod}
-                className="h-LS w-LS"
+                className="size-ls"
                 name="default-radio"
                 type="radio"
                 value=""
                 onClick={() => setSelectedPeriod(period)}
               />
-              <span className="ml-XXXS font-medium text-h4 ">
+              <span className="ml-xxxs text-h4 font-medium ">
                 {Utils.renderPeriod(period)}
               </span>
             </div>

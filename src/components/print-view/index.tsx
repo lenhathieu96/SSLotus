@@ -6,7 +6,7 @@ import Utils from "@utils/utils";
 
 import "./index.css";
 
-import { DharmachakraPng } from "@assets/png";
+import { DharmachakraPng } from "@assets/images";
 
 interface Props {
   data: Family;
@@ -18,7 +18,7 @@ const PAGE_BREAK_INDEX = 13;
 const PrintPreView = forwardRef(
   ({ data }: Props, ref: LegacyRef<HTMLDivElement>) => {
     const baseCellStyles =
-      "border-2 border-black-300 p-XXXS font-semibold text-h2";
+      "border-2 border-black-300 p-xxxs font-semibold text-h2";
 
     const appointmentDate = useMemo(() => {
       if (data.appointment?.date) {
@@ -39,31 +39,29 @@ const PrintPreView = forwardRef(
           <div className="flex w-1/5 bg-white-100">
             <img
               alt="DharmachakraPng"
-              className=" h-[16] w-[16] "
+              className=" size-[16] "
               src={DharmachakraPng}
             />
           </div>
 
           <div className="flex grow flex-col items-center justify-center">
-            <p className="font-semibold text-h1">
+            <p className="text-h1 font-semibold">
               {/* {data.appointment?.type === "CA" ? "CẦU AN" : "CẦU SIÊU"} */}
               CẦU AN
             </p>
-            <p className="font-semibold text-h3">{data.address}</p>
+            <p className="text-h3 font-semibold">{data.address}</p>
           </div>
 
-          <div className="flex flex-col items-center gap-XXXS">
-            <span className="font-semibold text-h3">{appointmentDate}</span>
-            <div className="flex flex-col items-center justify-center border-2 border-black-300  px-XXS">
-              <span className="text-center font-regular text-body2">
-                Mã sô:
-              </span>
-              <span className="font-semibold text-body1">{data.id}</span>
+          <div className="flex flex-col items-center gap-xxxs">
+            <span className="text-h3 font-semibold">{appointmentDate}</span>
+            <div className="flex flex-col items-center justify-center border-2 border-black-300  px-xxs">
+              <span className="text-center text-body2 font-normal">Mã sô:</span>
+              <span className="text-body1 font-semibold">{data.id}</span>
             </div>
           </div>
         </div>
 
-        <table className="mt-XS w-full">
+        <table className="mt-xs w-full">
           <thead className="border-2 border-black-300">
             <tr>
               <th className={`${baseCellStyles} w-1/12 font-semibold`}>STT</th>

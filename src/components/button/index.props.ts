@@ -22,7 +22,7 @@ export interface IBaseButtonProps {
 export interface IIconButtonProps {
   icon: keyof HeroIconType;
   /**
-   * @default 24px - XL
+   * @default 24px - xl
    */
   iconSize?: AppSize;
   /**

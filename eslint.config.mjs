@@ -134,7 +134,12 @@ export default [
             ["^(@constants)(/.*|$)", "^(@app)(/.*|$)"],
             ["^(@routes)(/.*|$)", "^(@pages)(/.*|$)"],
             ["^(@components)(/.*|$)"],
-            ["^(@models)(/.*|$)", "^(@services)(/.*|$)", "^(@utils)(/.*|$)"],
+            [
+              "^(@models)(/.*|$)",
+              "^(@services)(/.*|$)",
+              "^(@utils)(/.*|$)",
+              "^(@hooks)(/.*|$)",
+            ],
             // Side effect imports.
             ["^\\u0000"],
             // Parent imports. Put `..` last.
@@ -142,7 +147,7 @@ export default [
             // Other relative imports. Put same-folder imports and `.` last.
             ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
             // Style imports.
-            ["^(@assets)(/.*|$)"],
+            ["^(@assets)(/.*|$)", "^(@theme)(/.*|$)"],
           ],
         },
       ],
@@ -151,6 +156,6 @@ export default [
     },
   },
   {
-    files: ["**/*.ts", "**/*.tsx", "**/*.js"],
+    files: ["**/*.{ts,tsx,js}"],
   },
 ];

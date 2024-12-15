@@ -5,7 +5,7 @@ import { AppColor } from "@utils/constant";
 import { IBaseButtonProps } from "./index.props";
 
 const BASE_STYLE =
-  "flex flex-row min-h-EXTRA justify-center items-center rounded-2xl p-XS transition-all duration-500 hover:opacity-80";
+  "flex flex-row min-h-extra justify-center items-center rounded-2xl p-xs transition-all duration-500 hover:opacity-80";
 
 const BaseButtonComp = ({
   label,
@@ -55,7 +55,7 @@ const BaseButtonComp = ({
     >
       {leading}
       <p
-        className="mx-XXS line-clamp-1 p-ZERO text-left font-semibold text-body1 desktop:text-button1"
+        className="mx-xxs line-clamp-1 p-zero text-left text-body1 font-semibold desktop:text-button1"
         style={{ color: labelColor }}
       >
         {label}

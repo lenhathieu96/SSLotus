@@ -18,7 +18,7 @@ function FamilyOverviewComp({
 }: Readonly<Props>) {
   return (
     <button
-      className={`box-border flex  w-full cursor-pointer flex-col gap-XS rounded-xl border-b-2 p-L shadow
+      className={`box-border flex  w-full cursor-pointer flex-col gap-xs rounded-xl border-b-2 p-l shadow
       hover:bg-primary-100 hover:text-white-100
       ${
         isSelected
@@ -28,11 +28,11 @@ function FamilyOverviewComp({
       ${className}`}
       onClick={() => onClick(data.id)}
     >
-      <div className="flex flex-row items-baseline gap-XXXS">
-        <span className=" font-semibold text-h3">{`${data.address} - ${data.id}`}</span>
+      <div className="flex flex-row items-baseline gap-xxxs">
+        <span className=" text-h3 font-semibold">{`${data.address} - ${data.id}`}</span>
       </div>
       {data.members.length > 0 ? (
-        <span className=" font-medium text-body2">
+        <span className=" text-body2 font-medium">
           {data.members[0].fullName}
         </span>
       ) : null}

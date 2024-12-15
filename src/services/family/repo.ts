@@ -2,6 +2,7 @@ import FamilyApi from "@remote/family-api";
 import dayjs from "dayjs";
 
 import { Family } from "@models";
+import { PAGODA_ID } from "@utils/constant";
 
 export const FamilyService = {
   getAllFamilies: async () => {
@@ -24,15 +25,14 @@ export const FamilyService = {
 
   updateFamilyProfile: async (family: Family): Promise<boolean> => {
     try {
-      const pagodaID = "TDHP";
       const uploadFamilyProfile = { ...family };
       if (family.id === -1) {
         const timestamp = dayjs().unix();
         uploadFamilyProfile.id = timestamp;
-        await FamilyApi.addFamily(pagodaID, uploadFamilyProfile);
+        await FamilyApi.addFamily(PAGODA_ID, uploadFamilyProfile);
         console.log("created family: ", uploadFamilyProfile.id);
       } else {
-        await FamilyApi.updateFamilyProfile(pagodaID, uploadFamilyProfile);
+        await FamilyApi.updateFamilyProfile(PAGODA_ID, uploadFamilyProfile);
         console.log("updated family: ", family.id);
       }
       return true;
@@ -44,9 +44,20 @@ export const FamilyService = {
 
   addFamilyWithId: async (family: Family): Promise<boolean> => {
     try {
-      const pagodaID = "TDHP";
-      await FamilyApi.addFamily(pagodaID, family);
+      await FamilyApi.addFamily(PAGODA_ID, family);
       console.log("updated family: ", family.id);
+      return true;
+    } catch (error) {
+      console.log("Error on add new family profile", error);
+      return false;
+    }
+  },
+
+  addHouseHold: async (families: Family[]): Promise<boolean> => {
+    try {
+      await FamilyApi.addHouseHold(PAGODA_ID, families);
+
+      // console.log("updated family: ", family.id);
       return true;
     } catch (error) {
       console.log("Error on add new family profile", error);

@@ -33,6 +33,11 @@ const Helper = {
     }
     return `${displayDay} Tháng ${displayMonth}`;
   },
+
+  isUUID: (input: string): boolean =>
+    new RegExp(
+      /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/,
+    ).test(input),
 };
 
 export default Helper;

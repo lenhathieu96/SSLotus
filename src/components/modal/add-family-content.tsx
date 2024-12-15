@@ -4,7 +4,7 @@ import Button from "@components/button";
 import Form from "@components/form";
 import { modalRef } from "@components/modal/index.ref";
 
-interface Props {
+interface AddFamilyContentProps {
   onAddFamily: (address: string) => void;
   defaultAddress?: string;
 }
@@ -12,7 +12,7 @@ interface Props {
 export default function AddFamilyContent({
   onAddFamily,
   defaultAddress,
-}: Props) {
+}: AddFamilyContentProps) {
   const [address, setAddress] = useState<string>(defaultAddress ?? "");
 
   const error = useMemo(() => {
@@ -26,8 +26,8 @@ export default function AddFamilyContent({
   }, [address]);
 
   return (
-    <div className="flex flex-col gap-XXS">
-      <p className="text-center font-semibold text-h4">Chỉnh sửa địa chỉ</p>
+    <div className="flex flex-col gap-xxs">
+      <p className="text-center text-h4 font-semibold">Chỉnh sửa địa chỉ</p>
       <Form.Input
         defaultValue={defaultAddress}
         error={error}

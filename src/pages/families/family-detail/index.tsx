@@ -134,7 +134,7 @@ const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
   }, [data]);
 
   return (
-    <div className="flex h-full flex-col gap-L">
+    <div className="flex h-full flex-col gap-l">
       {/**Header */}
       <FamilyDetailHeader
         appointmentDate={familyDetail.appointment?.date}
@@ -146,18 +146,18 @@ const FamilyDetailComp = ({ data, onUpdateFamilyDetail, onClose }: Props) => {
       />
 
       {/**Address */}
-      <div className="flex w-full flex-row items-center justify-between gap-XS">
-        <span className="font-semibold text-h4">{`Địa chỉ: ${familyDetail.address}`}</span>
+      <div className="flex w-full flex-row items-center justify-between gap-xs">
+        <span className="text-h4 font-semibold">{`Địa chỉ: ${familyDetail.address}`}</span>
         <Button.Icon
-          className="bg-transparent p-ZERO active:bg-transparent"
+          className="bg-transparent p-zero active:bg-transparent"
           icon="PencilIcon"
           iconColor="blue-100"
-          iconSize="LS"
+          iconSize="ls"
           onClick={onPressChangeAddress}
         />
       </div>
 
-      <span className="font-semibold text-h4">{`Số lượng thành viên: ${familyDetail.members.length}`}</span>
+      <span className="text-h4 font-semibold">{`Số lượng thành viên: ${familyDetail.members.length}`}</span>
       <MemberList
         members={familyDetail.members}
         onEditMemberProfile={onPressEditProfile}

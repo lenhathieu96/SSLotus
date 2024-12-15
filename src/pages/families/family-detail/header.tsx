@@ -1,6 +1,5 @@
 import { memo, useMemo } from "react";
 import equals from "react-fast-compare";
-import { CalendarIcon, PrinterIcon } from "@heroicons/react/24/outline";
 
 import Button from "@components/button";
 
@@ -33,37 +32,37 @@ const FamilyDetailHeaderComp = ({
   }, [appointmentDate]);
 
   return (
-    <div className="flex w-2/3 justify-end gap-L self-end">
+    <div className="flex w-2/3 justify-end gap-l self-end">
       {showControlOptions ? (
         <Button
-          color={AppColor.secondary[200]}
+          color={AppColor.pallet.secondary20}
           label={lunarAppointmentDate ?? "Đặt lịch"}
-          leading={
-            <CalendarIcon
-              className="h-LS w-LS text-white-100 desktop:h-XL desktop:w-XL"
-              strokeWidth={2}
-            />
-          }
+          // leading={
+          //   <CalendarIcon
+          //     className="text-white-100 size-ls desktop:size-xl"
+          //     strokeWidth={2}
+          //   />
+          // }
           onClick={onSetAppointment}
         />
       ) : null}
       {showControlOptions ? (
         <Button
-          color={AppColor.blue[100]}
+          color={AppColor.pallet.blue10}
           disabled={!printEnabled}
           label="In"
-          leading={
-            <PrinterIcon
-              className="h-LS w-LS text-white-100 desktop:h-XL desktop:w-XL"
-              strokeWidth={2}
-            />
-          }
+          // leading={
+          //   <PrinterIcon
+          //     className="text-white-100 size-ls desktop:size-xl"
+          //     strokeWidth={2}
+          //   />
+          // }
           onClick={onPrint}
         />
       ) : null}
 
       <Button.Icon
-        className="p-ZERO"
+        className="p-zero"
         icon="XMarkIcon"
         iconColor="black-300"
         onClick={onClose}

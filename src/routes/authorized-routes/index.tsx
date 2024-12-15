@@ -1,17 +1,32 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import CalendarPage from "@pages/calendar";
-import DashboardPage from "@pages/dashboard";
 import FamiliesPage from "@pages/families";
+
+import AppLayout from "@components/app_layout";
+
+import { DASHBOARD_SIDE_MENU, ROUTE_CONFIGS } from "../constants";
 
 export default function AuthorizedRoutes() {
   return (
     <Routes>
-      <Route index element={<Navigate replace to="/dashboard" />} />
-
-      <Route element={<DashboardPage />} path="/dashboard">
-        <Route element={<FamiliesPage />} path="" />
-        <Route element={<CalendarPage />} path="calendar" />
+      <Route
+        path={ROUTE_CONFIGS.Root.path}
+        element={
+          <AppLayout
+            menu={{
+              path: ROUTE_CONFIGS.Root.path,
+              routes: DASHBOARD_SIDE_MENU,
+            }}
+          />
+        }
+      >
+        <Route
+          index
+          element={<FamiliesPage />}
+          path={ROUTE_CONFIGS.HouseHold.path}
+        />
+        <Route element={<CalendarPage />} path={ROUTE_CONFIGS.Calendar.path} />
       </Route>
     </Routes>
   );
