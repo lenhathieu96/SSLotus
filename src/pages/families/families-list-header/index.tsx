@@ -1,14 +1,14 @@
 import { FC, memo } from "react";
 import equals from "react-fast-compare";
 import { useSearchBox } from "react-instantsearch";
-import { PlusIcon } from "@heroicons/react/24/outline";
+import { Button } from "antd";
 import { debounce } from "lodash";
 
-import Button from "@components/button";
+import SearchInput from "@pages/families/families-list-header/search-input";
 
 import { FamilyListHeaderProps } from "../index.props";
 
-import SearchInput from "./search-input";
+import { Plus } from "@assets/svgs";
 
 const FamiliesListHeaderProps: FC<FamilyListHeaderProps> = ({
   enableAddNewFamily,
@@ -62,18 +62,17 @@ const FamiliesListHeaderProps: FC<FamilyListHeaderProps> = ({
   // };
 
   return (
-    <div className="flex w-full flex-row items-center justify-between rounded-2xl p-xs">
-      <SearchInput onQueryTxtChange={debounce(searchFamilies, 1000)} />
-      <div>
-        <Button
-          disabled={!enableAddNewFamily}
-          label="Thêm hộ mới"
-          leading={
-            <PlusIcon className={"size-xl desktop:size-xxl"} strokeWidth={2} />
-          }
-          onClick={onAddNewFamily}
-        />
-      </div>
+    <div className="flex w-full flex-row items-center justify-between rounded-2xl bg-white p-xs">
+      <SearchInput onQueryTxtChange={debounce(searchFamilies, 1500)} />
+      <Button
+        disabled={!enableAddNewFamily}
+        icon={<Plus className="size-ls" />}
+        size="large"
+        type="primary"
+        onClick={onAddNewFamily}
+      >
+        Thêm hộ mới
+      </Button>
     </div>
   );
 };

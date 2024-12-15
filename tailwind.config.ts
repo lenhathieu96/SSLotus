@@ -14,7 +14,7 @@ export default {
       ...Colors,
     },
     fontFamily: {
-      mulish: ["Mulish"],
+      alegreya: ["Alegreya"],
     },
     fontSize: {
       h1: "1.75rem", //28px

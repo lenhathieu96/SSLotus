@@ -3,18 +3,12 @@ import equals from "react-fast-compare";
 
 import { IIconButtonProps } from "./index.props";
 
-import * as AppIcon from "@assets/svgs";
-
 const IconButtonComp = ({
-  icon,
   iconColor = "primary-100",
-  iconSize = "xl",
   disabled,
   className,
   onClick,
 }: Readonly<IIconButtonProps>) => {
-  // const IconComponent = AppIcon[icon];
-
   const buttonColor = useMemo(() => {
     if (disabled) {
       return "text-gray-400";
@@ -23,8 +17,6 @@ const IconButtonComp = ({
     const defaultColor = `text-${iconColor}`;
     return defaultColor;
   }, [disabled, iconColor]);
-
-  const size = `h-${iconSize} w-${iconSize}`;
 
   return (
     <button

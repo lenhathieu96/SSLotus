@@ -52,6 +52,7 @@ const Colors = {
   pallet: Pallet,
   primary: Pallet.green30,
   white: Pallet.white10,
+  border: Pallet.gray30,
   transparent: "transparent",
 };
 

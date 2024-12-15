@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import CalendarPage from "@pages/calendar";
 import FamiliesPage from "@pages/families";
@@ -23,9 +23,9 @@ export default function AuthorizedRoutes() {
       >
         <Route
           index
-          element={<FamiliesPage />}
-          path={ROUTE_CONFIGS.HouseHold.path}
+          element={<Navigate replace to={ROUTE_CONFIGS.HouseHold.path} />}
         />
+        <Route element={<FamiliesPage />} path={ROUTE_CONFIGS.HouseHold.path} />
         <Route element={<CalendarPage />} path={ROUTE_CONFIGS.Calendar.path} />
       </Route>
     </Routes>
